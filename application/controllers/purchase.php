@@ -115,7 +115,7 @@ class Purchase extends MY_Controller {
                     // get divition current book info
                     $current_d_b = $this->CM->getwhere('inventory_college', array('college_id' => $college_id, 'book_id' => $pid[$i]));
                     if (!$current_d_b) {
-                        $datadd['college_id'] = $division_id;
+                        $datadd['college_id'] = $college_id;
                         $datadd['book_id'] = $pid[$i];
                         $datadd['quantity'] = $quantity[$i];
                         $datadd['status'] = 1;

@@ -35,6 +35,12 @@
                                 <i class="fa fa-share-alt-square"></i> <span>District</span>
                             </a>
                         </li>
+                        
+                        <li class="<?php if($c=='thana')echo "active"  ?>">
+                            <a href="<?php echo base_url(); ?>thana">
+                                <i class="fa fa-share-alt-square"></i> <span>Thana</span>
+                            </a>
+                        </li>
    
                         
                         <li class="<?php if($c=='department')echo "active"  ?>">

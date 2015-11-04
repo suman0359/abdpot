@@ -111,6 +111,15 @@ $this->load->view('common/sidebar');
                     ?>
 
                 </div>
+                
+                <div class="control-group">
+                    <label class="control-label">Department</label>
+                    
+                    
+                        <b> <?php echo $department->name; ?> </b>
+                    
+
+                </div>
 
                 <div class="control-group ">
                     <label class="control-label">Comments</label>

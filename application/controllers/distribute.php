@@ -17,11 +17,11 @@ class Distribute  extends MY_Controller{
         $this->load->view('distribute/index',$data);
     }
     
-    public function add($cid=NULL)
+    public function add($cid=NULL, $did=NULL)
     {
         
          $jid = $this->session->userdata('jonal_id') ;
-         $data['colage_list'] = $this->CM->getAllWhere('college', array('jonal_id'=>$jid), 'name ASC') ; 
+         $data['colage_list'] = $this->CM->getAllWhere('college', array('jonal_id'=>$jid), 'name ASC') ;
           
          if($jid==0)
          {
@@ -43,6 +43,7 @@ class Distribute  extends MY_Controller{
           $data['date']=date('d-m-Y');
           
           $data['teache_list'] = $this->CM->getAllWhere('teachers', array('college_id'=>$cid), 'name ASC') ; 
+          $data['department_list'] = $this->CM->getAllWhere('teachers', array('dep_id'=>$cid), 'name ASC') ; 
           
           if($cid!=NULL) { 
               $data['college'] = $this->CM->getinfo('college', $cid) ; 
@@ -63,6 +64,7 @@ class Distribute  extends MY_Controller{
             $this->db->trans_start();
             $pur_info['college_id']= $this->input->post('college_id') ;
             $pur_info['teacher_id']=  $this->input->post('teacher_id');
+            $pur_info['department_id']=  $this->input->post('department_id');
             $pur_info['comments']=  $this->input->post('comments');
             $pur_info['status']= 1;
             $pur_info['entryby']=$this->_uid;   
