@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Books extends CI_Controller 
+class Subject extends CI_Controller 
 {
 	 
 
@@ -17,12 +17,12 @@ class Books extends CI_Controller
 
     public function index()
     {
-    	$data['books_list']=$this->CM->getTotalALL('books');
+    	$data['subject_list']=$this->CM->getTotalALL('tbl_subject');
        
         
-    	$no_rows= $this->CM->getTotalRow('books');
+    	$no_rows= $this->CM->getTotalRow('tbl_subject');
         $this->load->library('pagination');
-        $config['base_url'] = base_url().'books/index/';
+        $config['base_url'] = base_url().'subject/index/';
        
         $config['total_rows'] = $no_rows ;
         $config['per_page'] = 15;
@@ -42,8 +42,8 @@ class Books extends CI_Controller
         $config['first_link'] = 'First';
         $this->pagination->initialize($config);     
         
-        $data['books_list']=$this->CM->getTotalALL('books',$this->uri->segment(3), $config['per_page']);
-        $this->load->view('books/index',$data);    
+        $data['subject_list']=$this->CM->getTotalALL('tbl_subject',$this->uri->segment(3), $config['per_page']);
+        $this->load->view('subject/index',$data);    
     }
 
     public function add()
@@ -51,99 +51,82 @@ class Books extends CI_Controller
       if( !$this->CM->checkpermission($this->module,'add', $this->uid))
              redirect ('error/accessdeny');
       
-       
-
-        $data['group_list']=$this->CM->getAll('group', 'name ASC' );
-        $data['subject_list']=$this->CM->getAll('tbl_subject', 'subject_name ASC' );
+       // $data['id'] = $this->CM->getMaxID('user'); 
+     
+        $data['subject_user']=$this->CM->getAllWhere('user', array('user_type' => '3'));
         
-        
-
         $data['name'] = "";
-        $data['group_id'] = "";
-        $data['book_code'] = "";
-        $data['subject_name'] = "";
-        $data['book_rate'] = "";
-        
+        $data['subject_code'] = "";
+        //$data['status'] = "";
       
         $this->load->library('form_validation');
 
-
-        $this->form_validation->set_rules('name', 'required', 'address');
-        $this->form_validation->set_rules('subject_name', 'required', 'address');
+        $this->form_validation->set_rules('name', 'required');
         if ($this->form_validation->run() == FALSE)
         {
-            $this->load->view('books/form', $data); 
+            $this->load->view('subject/form', $data); 
         }
         else
         {
             
-            $datas['book_name'] = $this->input->post('book_name');
-            $datas['group_id'] = $this->input->post('group_id');
-            $datas['book_code'] = $this->input->post('book_code');
-            $datas['subject_id'] = $this->input->post('subject_id');
-            $datas['rate'] = $this->input->post('rate');
+            $datas['subject_name'] = $this->input->post('subject_name'); 
+            $datas['subject_code'] = $this->input->post('subject_code'); 
             
-
             $datas['status'] = 1;
             //$datas['entryby']=$this->session->userdata('uid');       
             
 
-            $insert = $this->CM->insert('books',$datas) ; 
+            $insert = $this->CM->insert('tbl_subject',$datas) ; 
             if($insert)
             {
                 $msg = "Operation Successfull!!";
-        		$this->session->set_flashdata('success', $msg);
-                redirect('books'); 
+                $this->session->set_flashdata('success', $msg);
+                redirect('subject'); 
             }
             else 
             {
                 $msg = "There is an error, Please try again!!";
-        		$this->session->set_flashdata('error', $msg);
-        		$this->load->view('college/form', $data); 
+                $this->session->set_flashdata('error', $msg);
+                $this->load->view('subject/form', $data); 
             }
-              redirect('books','refresh'); 
+              redirect('subject','refresh'); 
         }
         
     }
 
+    // Edit Subject 
     public function edit($id)
     {
          if( !$this->CM->checkpermission($this->module,'edit', $this->uid))
              redirect ('error/accessdeny');
         
-        $content = $this->CM->getInfo('books', $id) ; 
-        $data['group_list']=$this->CM->getAll('group', 'name ASC' );
-        $data['subject_list']=$this->CM->getAll('tbl_subject', 'subject_name ASC' );
+        $content = $this->CM->getInfo('tbl_subject', $id) ; 
+        //$data['division_user']=$this->CM->getAllWhere('user', array('user_type' => '3'));
+       
         
-        $data['name'] = $content->book_name;
-        $data['group_id'] = $content->group_id;
-        $data['book_code'] = $content->book_code;
-        $datas['subject_id'] = $this->input->post('subject_id');
-        $data['book_rate'] = $content->rate;
+        $data['subject_name'] = $content->subject_name;
+        $data['subject_code'] = $content->subject_code;
         //$data['status'] = $content->status;
         
         $this->load->library('form_validation');
-        $this->form_validation->set_rules( 'name', 'required', 'address');
+        $this->form_validation->set_rules( 'subject_name', 'required');
         if ($this->form_validation->run() == FALSE)
         {
-                $this->load->view('books/form', $data); 
+                $this->load->view('subject/form', $data); 
         }
         else
         {
-            $datas['book_name'] = $this->input->post('book_name');
-            $datas['group_id'] = $this->input->post('group_id');
-            $datas['book_code'] = $this->input->post('book_code');
-            $datas['subject_id'] = $this->input->post('subject_id');
-            $datas['rate'] = $this->input->post('rate');
+            $datas['subject_name'] = $this->input->post('subject_name'); 
+            $datas['subject_code'] = $this->input->post('subject_code'); 
             //$datas['status'] = $this->input->post('status');
             //$datas['entryby']=$this->session->userdata('uid');       
-
-                if($this->CM->update('books', $datas, $id)){
+      if($this->CM->update('tbl_subject', $datas, $id)){
                     $msg = "Operation Successfull!!";
                     $this->session->set_flashdata('success', $msg);
-                    redirect('books'); 
+                    redirect('subject'); 
                 }
         }
         
     }
+
 }

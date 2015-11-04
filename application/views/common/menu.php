@@ -29,11 +29,23 @@
                                 <i class="fa fa-share-alt-square"></i> <span>Jonal</span>
                             </a>
                         </li>
+
+                        <li class="<?php if($c=='district')echo "active"  ?>">
+                            <a href="<?php echo base_url(); ?>district">
+                                <i class="fa fa-share-alt-square"></i> <span>District</span>
+                            </a>
+                        </li>
    
                         
                         <li class="<?php if($c=='department')echo "active"  ?>">
                             <a href="<?php echo base_url(); ?>department">
                                 <i class="fa fa-puzzle-piece"></i> <span>Department</span>
+                            </a>
+                        </li>
+
+                        <li class="<?php if($c=='subject')echo "active"  ?>">
+                            <a href="<?php echo base_url(); ?>subject">
+                                <i class="fa fa-puzzle-piece"></i> <span>Subject</span>
                             </a>
                         </li>
                         

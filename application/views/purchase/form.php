@@ -59,12 +59,12 @@ $this->load->view('common/sidebar');
                     foreach ($books as $book){ 
                 ?>
          <tr id="line_<?php echo $book['book_id'] ?>" > 
-                                                          <td  ><i   class="remove_item glyphicon glyphicon-minus-sign btn btn-warning btn-xs "  itemid="<?php echo $book['book_id'] ?>" ></i></td>
-                                                          <td><input name="pid[]" class=" "  value="<?php echo $book['book_id'] ?>" type="hidden" ><?php echo $book['book_name'] ?></td> 
-                                                          <td> <?php echo $book['book_code'] ?> </td> 
-                                                          <td><input name="price[]" class=" "  value="<?php echo $book['price'] ?>" type="hidden" >  <?php echo $book['price'] ?> </td> 
-                                                          <td> <input type="number" name="qty[]"   id="qty" min="1" value="1" class="q_<?php echo $book['book_id'] ?> qty form-control "  onChange="call_all()" /></td>
-                                                    </tr>
+                    <td  ><i   class="remove_item glyphicon glyphicon-minus-sign btn btn-warning btn-xs "  itemid="<?php echo $book['book_id'] ?>" ></i></td>
+                    <td><input name="pid[]" class=" "  value="<?php echo $book['book_id'] ?>" type="hidden" ><?php echo $book['book_name'] ?></td> 
+                    <td> <?php echo $book['book_code'] ?> </td> 
+                    <td><input name="price[]" class=" "  value="<?php echo $book['price'] ?>" type="hidden" >  <?php echo $book['price'] ?> </td> 
+                    <td> <input type="number" name="qty[]"   id="qty" min="1" value="1" class="q_<?php echo $book['book_id'] ?> qty form-control "  onChange="call_all()" /></td>
+              </tr>
                                                     
                <?php } } ?>
                 </tbody>
@@ -170,7 +170,17 @@ $this->load->view('common/sidebar');
             </div>
         </div>
         
-
+        <div class="control-group">
+       
+           
+            <label>Teacher </label>
+            <div>
+            <select name="teacher_id" class="form-group form-control" id="teacher_id">
+            <option value="0" >select  Teacher </option>
+             
+            </select>
+            </div>
+        </div>
       
         
         <div class="control-group ">
@@ -188,17 +198,9 @@ $this->load->view('common/sidebar');
        </div>
         
         </div>
-        
-        
-    
-    
+
         <div class="clearfix"></div>
 
-   
-
-        
-
-        
         <?php echo form_close() ?>      
            
         </div>
@@ -262,6 +264,33 @@ $this->load->view('common/sidebar');
 
    });
  }); 
+
+
+  //Deaprtment Select 
+  $(".main-mid-area").on('change', '#college_id', function(){
+
+        var college_id = $(this).val() ; 
+        $.ajax({
+          url: "<?php echo base_url() ?>index.php/home/getteacher/"+college_id,
+
+          beforeSend: function( xhr ) {
+            xhr.overrideMimeType( "text/plain; charset=x-user-defined" );
+            $("#teacher_id").html("<option>Loading .... </option>") ; 
+
+          }
+        })
+      .done(function( data ) {
+      
+         $("#teacher_id").html("<option value=''>Select a Teacher </option>"); 
+            data=JSON.parse(data);
+        $.each(data, function(key, val) {
+              $("#teacher_id").append("<option value='"+val.id+"'>"+val.name+"</option>");
+              
+            });  
+            
+
+   });
+ });
  
  
             

@@ -87,6 +87,26 @@ $this->load->view('common/sidebar');
         </div>
     </div>
 
+    <div class="col-md-3">
+        <div class="form-group">
+       
+            
+            <label>Subject Name </label>
+            <div>
+            <select name="subject_id" class="form-group form-control" id="subject_id">
+            <option value="0" >select Option</option>
+                <?php foreach ($subject_list as $subject) { ?>
+                
+                <option value="<?php echo $subject["id"]; ?>" <?php if($subjct["id"]==$subject_id){echo 'selected';} ?> >
+                    <?php echo $subject["subject_name"]; ?>
+                </option>
+
+                <?php }?>
+            </select>
+            </div>
+        </div>
+    </div>
+
     <div class="col-md-4">
         <div class="form-group">
             <label> Book Rate </label>

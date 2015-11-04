@@ -57,10 +57,16 @@ class Home extends MY_Controller
     	 echo json_encode($collegelist) ; 
     	 
     }
+
+    public function getteacher($jid)
+    {
+        $jid = trim($jid); 
+        $teacherlist=$this->CM->getAllWhere('teachers', array('college_id'=> $jid)) ; 
+         echo json_encode($teacherlist) ; 
+         
+    }
     
-    
-    
-    
+
 }
 
 
