@@ -114,9 +114,8 @@ $this->load->view('common/sidebar');
                 
                 <div class="control-group">
                     <label class="control-label">Department</label>
-                    
-                    
-                        <b> <?php echo $department->name; ?> </b>
+                    <input type="text" name="department_id" id="department_id" value="<?php echo $cid ?>" />
+                    <b>  <?php echo $department->name; ?> </b>
                     
 
                 </div>
@@ -190,14 +189,14 @@ $this->load->view('common/sidebar');
     <script>
         $(document).ready(function () {
 
-<?php if (!$cid) { ?>
+            <?php if (!$cid) { ?>
                 $("#college_list").modal(
                         {
                             backdrop: 'static',
                             keyboard: false
                         }
                 );
-<?php } ?>
+            <?php } ?>
 
             $("body").on('change', '#collage_id', function () {
                 var cid = $(this).val();
@@ -270,23 +269,20 @@ $this->load->view('common/sidebar');
 
                 }
             })
-                    .done(function (data) {
-                        /* if ( console && console.log ) {
-                         console.log( "Sample of data:", data.slice( 0, 100 ) );
-                         }*/
+            .done(function (data) {
+                /* if ( console && console.log ) {
+                 console.log( "Sample of data:", data.slice( 0, 100 ) );
+                 }*/
 
-                        $("#teacher_id").html("<option value=''>Select a Teacher </option>");
-                        data = JSON.parse(data);
-                        $.each(data, function (key, val) {
-                            $("#teacher_id").append("<option value='" + val.id + "'>" + val.name + "</option>");
-
-                        });
-
-
-                    });
+                $("#teacher_id").html("<option value=''>Select a Teacher </option>");
+                data = JSON.parse(data);
+                $.each(data, function (key, val) {
+                    $("#teacher_id").append("<option value='" + val.id + "'>" + val.name + "</option>");
+                });
+            });
         });
-
-
+        
+        
 
         function additemrow(id)
         {

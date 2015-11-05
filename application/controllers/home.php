@@ -66,6 +66,15 @@ class Home extends MY_Controller
          
     }
     
+    public function getDepartmentIdById($jid){
+        $jid = trim($jid); 
+        $department_id=  $this->CM->getIdWhere('teachers', $jid, 'dep_id');
+ 
+        echo json_encode($department_id) ; 
+    }
+    
+  
+    
 
 }
 

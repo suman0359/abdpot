@@ -60,7 +60,7 @@ $this->load->view('common/sidebar');
                                     <td> <input type="number" name="qty[]"   id="qty" min="1" value="1" class="q_<?php echo $book['book_id'] ?> qty form-control "  onChange="call_all()" /></td>
                                 </tr>
 
-                            <?php
+                                <?php
                             }
                         }
                         ?>
@@ -201,7 +201,7 @@ $this->load->view('common/sidebar');
 
             <div class="clearfix"></div>
 
-<?php echo form_close() ?>      
+            <?php echo form_close() ?>      
 
         </div>
     </div>
@@ -227,16 +227,16 @@ $this->load->view('common/sidebar');
 
                     }
                 })
-                        .done(function (data) {
-                            $("#jonal_id").html("<option value=''>Select a Jonal </option>");
-                            data = JSON.parse(data);
-                            $.each(data, function (key, val) {
-                                $("#jonal_id").append("<option value='" + val.id + "'>" + val.name + "</option>");
+                .done(function (data) {
+                    $("#jonal_id").html("<option value=''>Select a Jonal </option>");
+                    data = JSON.parse(data);
+                    $.each(data, function (key, val) {
+                        $("#jonal_id").append("<option value='" + val.id + "'>" + val.name + "</option>");
 
-                            });
+                    });
 
 
-                        });
+                });
             });
 
             $(".main-mid-area").on('change', '#jonal_id', function () {
@@ -250,17 +250,17 @@ $this->load->view('common/sidebar');
 
                     }
                 })
-                        .done(function (data) {
+                .done(function (data) {
 
-                            $("#college_id").html("<option value=''>Select a College </option>");
-                            data = JSON.parse(data);
-                            $.each(data, function (key, val) {
-                                $("#college_id").append("<option value='" + val.id + "'>" + val.name + "</option>");
+                    $("#college_id").html("<option value=''>Select a College </option>");
+                    data = JSON.parse(data);
+                    $.each(data, function (key, val) {
+                        $("#college_id").append("<option value='" + val.id + "'>" + val.name + "</option>");
 
-                            });
+                    });
 
 
-                        });
+                });
             });
 
 
@@ -276,17 +276,17 @@ $this->load->view('common/sidebar');
 
                     }
                 })
-                        .done(function (data) {
+                .done(function (data) {
 
-                            $("#teacher_id").html("<option value=''>Select a Teacher </option>");
-                            data = JSON.parse(data);
-                            $.each(data, function (key, val) {
-                                $("#teacher_id").append("<option value='" + val.id + "'>" + val.name + "</option>");
+                    $("#teacher_id").html("<option value=''>Select a Teacher </option>");
+                    data = JSON.parse(data);
+                    $.each(data, function (key, val) {
+                        $("#teacher_id").append("<option value='" + val.id + "'>" + val.name + "</option>");
 
-                            });
+                    });
 
 
-                        });
+                });
             });
 
 

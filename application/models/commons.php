@@ -17,7 +17,18 @@ class Commons extends CI_Model{
         return $bcl;
     }
     
-    public  function words_count($text, $no)
+    //Table_Name, ID, From_value
+    public function getIdWhere($table_name, $id, $col_id){
+        $this->db->select($col_id);
+        $this->db->where('id', $id);
+        $this->db->from($table_name);
+        
+        $query_result=$this->db->get();
+        $result=$query_result->row();
+        return $result;
+    }
+
+        public  function words_count($text, $no)
         {
             $text = strip_tags($text);  
             $text = trim(preg_replace("/\s+/"," ",$text));

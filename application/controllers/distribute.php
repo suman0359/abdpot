@@ -42,12 +42,23 @@ class Distribute  extends MY_Controller{
           
           $data['date']=date('d-m-Y');
           
-          $data['teache_list'] = $this->CM->getAllWhere('teachers', array('college_id'=>$cid), 'name ASC') ; 
-          $data['department_list'] = $this->CM->getAllWhere('teachers', array('dep_id'=>$cid), 'name ASC') ; 
+          $data['teacher_list'] = $this->CM->getAllWhere('teachers', array('college_id'=>$cid), 'name ASC') ; 
+          
+          $teacher_id=  $this->CM->getIdWhere('teachers', 5, 'id');
+          $department_id=  $this->CM->getIdWhere('distribute', $teacher_id, 'teacher_id');
+
+          echo '<pre>';
+          print_r($teacher_id);
+//          echo '<br>';
+//          print_r($department_id);
+          exit();
+          
           
           if($cid!=NULL) { 
               $data['college'] = $this->CM->getinfo('college', $cid) ; 
               $data['allbooks'] = $this->CM->getcollegebooks($cid) ;
+
+              
           }
           
           $this->load->library('form_validation');
