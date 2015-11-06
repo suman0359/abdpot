@@ -17,11 +17,11 @@ class Distribute  extends MY_Controller{
         $this->load->view('distribute/index',$data);
     }
     
-    public function add($cid=NULL, $did=NULL)
+    public function add($cid=NULL)
     {
         
          $jid = $this->session->userdata('jonal_id') ;
-         $data['colage_list'] = $this->CM->getAllWhere('college', array('jonal_id'=>$jid), 'name ASC') ;
+         $data['colage_list'] = $this->CM->getAllWhere('college', array('jonal_id'=>$jid), 'name ASC') ; 
           
          if($jid==0)
          {
@@ -42,23 +42,11 @@ class Distribute  extends MY_Controller{
           
           $data['date']=date('d-m-Y');
           
-          $data['teacher_list'] = $this->CM->getAllWhere('teachers', array('college_id'=>$cid), 'name ASC') ; 
-          
-          $teacher_id=  $this->CM->getIdWhere('teachers', 5, 'id');
-          $department_id=  $this->CM->getIdWhere('distribute', $teacher_id, 'teacher_id');
-
-          echo '<pre>';
-          print_r($teacher_id);
-//          echo '<br>';
-//          print_r($department_id);
-          exit();
-          
+          $data['teache_list'] = $this->CM->getAllWhere('teachers', array('college_id'=>$cid), 'name ASC') ; 
           
           if($cid!=NULL) { 
               $data['college'] = $this->CM->getinfo('college', $cid) ; 
               $data['allbooks'] = $this->CM->getcollegebooks($cid) ;
-
-              
           }
           
           $this->load->library('form_validation');
@@ -75,7 +63,6 @@ class Distribute  extends MY_Controller{
             $this->db->trans_start();
             $pur_info['college_id']= $this->input->post('college_id') ;
             $pur_info['teacher_id']=  $this->input->post('teacher_id');
-            $pur_info['department_id']=  $this->input->post('department_id');
             $pur_info['comments']=  $this->input->post('comments');
             $pur_info['status']= 1;
             $pur_info['entryby']=$this->_uid;   
