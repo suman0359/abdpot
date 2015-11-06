@@ -125,6 +125,15 @@ $this->load->view('common/sidebar');
             ?>
              
         </div>
+
+        <div class="control-group">
+            <label for="Department Name" class="control-label">Department Name</label>
+            <?php $department_name = $this->CM->getIdWhere('name', 'id', $department_id, 'department'); 
+            echo $department_name->name; 
+
+            ?>
+
+        </div>
         
         <div class="control-group ">
           <label class="control-label">Comments</label>

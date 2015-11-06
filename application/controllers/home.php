@@ -63,22 +63,21 @@ class Home extends MY_Controller
         $jid = trim($jid); 
         $teacherlist=$this->CM->getAllWhere('teachers', array('college_id'=> $jid)) ;
 
-        echo '<pre>';
-        print_r($teacherlist);
-        exit(); 
-         echo json_encode($teacherlist) ; 
+
+        echo json_encode($teacherlist) ; 
          
     }
     
     public function getdepartmentidbyid($teacher_id){
-        $jid = trim($jid); 
+        $teacher_id = trim($teacher_id); 
         //Selector Column Name || Where(Column Name) || Where Passed value || From(Table Name)
         $department_id=  $this->CM->getIdWhere('dep_id', 'id', $teacher_id, 'teachers');
-        //$department_id=  $this->CM->getIdWhere($teacher_id);
- 
-        echo '<pre>';
-        print_r($department_id);
-        exit();
+
+        // $department_name = $this->CM->getIdWhere('name', 'id', $department_id, 'department');
+
+        // echo '<pre>';
+        // print_r($department_name);
+        // exit();
 
         echo json_encode($department_id) ; 
     }
