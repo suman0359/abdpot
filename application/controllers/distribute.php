@@ -44,15 +44,9 @@ class Distribute  extends MY_Controller{
           
           $data['teacher_list'] = $this->CM->getAllWhere('teachers', array('college_id'=>$cid), 'name ASC') ; 
           
-          $teacher_id=  $this->CM->getIdWhere('teachers', 5, 'id');
-          $department_id=  $this->CM->getIdWhere('distribute', $teacher_id, 'teacher_id');
+          //Selector Column Name || From(Table Name) || Where(Column Name) || Where Passed value 
+          $teacher_id=  $this->CM->getIdWhere('id', 'teachers', 'college_id', $cid);
 
-          echo '<pre>';
-          print_r($teacher_id);
-//          echo '<br>';
-//          print_r($department_id);
-          exit();
-          
           
           if($cid!=NULL) { 
               $data['college'] = $this->CM->getinfo('college', $cid) ; 
