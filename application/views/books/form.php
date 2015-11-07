@@ -97,8 +97,8 @@ $this->load->view('common/sidebar');
             <option value="0" >select Option</option>
                 <?php foreach ($subject_list as $subject) { ?>
                 
-                <option value="<?php echo $subject["id"]; ?>" <?php if($subjct["id"]==$subject_id){echo 'selected';} ?> >
-                    <?php echo $subject["subject_name"]; ?>
+                <option value="<?php echo $subject["id"]; ?>" <?php if($subject["id"]==$subject_id){echo 'selected';} ?> >
+                    <?php echo $subject["name"]; ?>
                 </option>
 
                 <?php }?>

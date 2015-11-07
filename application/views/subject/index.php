@@ -44,6 +44,7 @@ $this->load->view('common/sidebar');
         <tr>
             <th id="action_btn_align">SL</th>
             <th id="action_btn_align">Subject Name</th>
+            <th id="action_btn_align">Department Name</th>
             <th id="action_btn_align">Subject Code</th>
             <th id="action_btn_align">Action</th>
            
@@ -55,12 +56,16 @@ $this->load->view('common/sidebar');
          <?php 
           //  var_dump($company_list) ; 
           foreach ($subject_list as $subject){
+              $department = $this->CM->getInfo('department', $subject['department_id']);
          ?>
          
          
       <tr id="action_btn_align">
           <td> <?php echo $subject['id'] ?></td>
-          <td> <?php echo $subject['subject_name'] ?></td>
+          <td> <?php echo $subject['name'] ?></td>
+          <td> <?php if (isset($department->name)) {
+                    echo $department->name;
+                } ?></td>
           <td> <?php echo $subject['subject_code'] ?></td>
          
           <td>     

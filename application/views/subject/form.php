@@ -33,12 +33,12 @@ $this->load->view('common/sidebar');
     ?>
 
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-4">
         <div class="form-group">
             <label> Subject Name </label>
             <?php 
             $form_input = array(
-                'name' => 'subject_name',
+                'name' => 'name',
                 'class' =>'form-control ', 
                 'value' => $name, 
                 'required' => 'required',
@@ -51,14 +51,34 @@ $this->load->view('common/sidebar');
         </div>
     </div>
     
-    <div class="form-group col-md-6">
+    <div class="col-md-3">
+        <div class="form-group">
+       
+            
+            <label>Department Name </label>
+            <div>
+            <select name="department_id" class="form-group form-control" id="department_id">
+            <option value="0" >select Option</option>
+                <?php foreach ($department_list as $department) { ?>
+                
+                <option value="<?php echo $department["id"];?>" <?php if($department["id"]==$department_id){echo 'selected';} ?> >
+                    <?php echo $department["name"]; ?>
+                </option>
+
+                <?php }?>
+            </select>
+            </div>
+        </div>
+    </div>
+    
+    <div class="form-group col-md-3">
     
     <label>Subject Code </label>
         <?php 
             $form_input = array(
                 'name' => 'subject_code',
                 'class' =>'form-control ', 
-                'value' => $name, 
+                'value' => $subject_code, 
                 'required' => 'required',
                 'placeholder'=>'Subject Code',
                 'size' => '50'

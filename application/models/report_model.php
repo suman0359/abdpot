@@ -137,13 +137,13 @@ class Report_model extends CI_Model{
         
       @$sql="
           SELECT 
-          d.id as did, d.distribute_time ,   d.distribute_date ,  d.entryby , d.comments, d.college_id, d.teacher_id, 
+          d.id as did, d.distribute_time , d.distribute_date ,  d.entryby , d.comments, d.college_id, d.teacher_id, 
           c.id, c.name as cname, c.address as caddress, t.name as tname, t.id , 
-          u.name as empname, u.id ,
+          u.name as empname, u.id , dep.name as depname, d.department_id, 
           (SELECT SUM(quantity) FROM distribute_books WHERE distribute_id = d.id ) as bookqty
-          FROM user as u, jonal as  j,  teachers as t , distribute as d,  college as c
+          FROM user as u, jonal as  j,  teachers as t , distribute as d, department as dep, college as c
           WHERE 
-          d.distribute_date <=  '{$edate}' AND   d.distribute_date >= '{$sdate}'        "  ; 
+          d.distribute_date <=  '{$edate}' AND   d.distribute_date >= '{$sdate}'   AND dep.id = d.department_id     "  ; 
           if($cid != NULL )
           {
              $sql .= " AND  d.college_id = '{$cid}'  ";  
@@ -153,7 +153,7 @@ class Report_model extends CI_Model{
                     GROUP BY d.id
                 "; 
           
-          
+          // SELECT department.name, distribute.department_id FROM department, distribute WHERE department.id = distribute.department_id
          //echo $sql ;  
         $result=$this->db->query($sql) ; 
         return $result->result_array() ; 

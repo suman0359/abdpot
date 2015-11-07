@@ -101,7 +101,7 @@ $this->load->view('common/sidebar');
             
             <th >Collage </th>
             <th >Teacher </th>
-            
+            <th >Department </th>
             <th >Send By </th>
             <th > Total Book </th>
             <th >Comment </th>
@@ -119,6 +119,7 @@ $this->load->view('common/sidebar');
             
              <td> <?php echo $content['cname'] ?>  </td>
              <td> <?php echo $content['tname'] ?>  </td>
+             <td> <?php echo $content['depname'] ?>  </td>
              <td> <?php echo $content['empname'] ?>  </td>
              <td> <?php echo $content['bookqty'] ?>  </td>
              <td> <?php echo $content['comments'] ?>  </td>

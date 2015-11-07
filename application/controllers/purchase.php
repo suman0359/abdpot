@@ -26,6 +26,7 @@ class Purchase extends MY_Controller {
     public function add($rid = NULL) {
         $data['pro_list'] = $this->CM->getAll('books');
         $data['div_list'] = $this->CM->getAll('division', 'id DESC');
+        //$data['executive_list'] = $this->CM->getAllWhere('user', array('user_type' => 5), 'id DESC');
         $data['id'] = "";
         $data['name'] = "";
         $data['cid'] = "";

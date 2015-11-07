@@ -98,7 +98,11 @@ class Department extends MY_Controller
 
     public function getdepartmentbyteacher($teacher)
     {
-        $department_list=$this->CM->getAllWhere('teachers', array('teacher_id' => $teacher));
+        $department_list=$this->CM->getAllWhere('department', array('id' => $teacher));
+        
+//        echo '<pre>';
+//        print_r($department_list);
+//        exit();
         
         echo json_encode($department_list); 
         

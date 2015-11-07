@@ -55,6 +55,7 @@ $this->load->view('common/sidebar');
            $group = $this->CM->getInfo('group', $books['group_id'] );
            $subject = $this->CM->getInfo('tbl_subject', $books['subject_id'] );
 
+
          ?>
          
          
@@ -62,7 +63,7 @@ $this->load->view('common/sidebar');
           <td> <?php echo $books['group_id']; ?></td>
           <td> <?php echo $books['book_name'] ?></td>
           <td> <?php echo $books['book_code'] ?></td>
-          <td> <?php echo $subject->subject_name; ?></td>
+          <td> <?php echo $subject->name; ?></td>
           <td> <?php echo $books['rate'] ?></td>
           <td> <?php echo $group->name; ?></td>
           

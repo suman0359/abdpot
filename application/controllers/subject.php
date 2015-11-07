@@ -54,8 +54,10 @@ class Subject extends CI_Controller
        // $data['id'] = $this->CM->getMaxID('user'); 
      
         $data['subject_user']=$this->CM->getAllWhere('user', array('user_type' => '3'));
+        $data['department_list']=$this->CM->getAll('department', 'name ASC' );
         
         $data['name'] = "";
+        $data['department_id'] = "";
         $data['subject_code'] = "";
         //$data['status'] = "";
       
@@ -69,7 +71,8 @@ class Subject extends CI_Controller
         else
         {
             
-            $datas['subject_name'] = $this->input->post('subject_name'); 
+            $datas['name'] = $this->input->post('name'); 
+            $datas['department_id'] = $this->input->post('department_id'); 
             $datas['subject_code'] = $this->input->post('subject_code'); 
             
             $datas['status'] = 1;
@@ -101,10 +104,16 @@ class Subject extends CI_Controller
              redirect ('error/accessdeny');
         
         $content = $this->CM->getInfo('tbl_subject', $id) ; 
-        //$data['division_user']=$this->CM->getAllWhere('user', array('user_type' => '3'));
+        
+//        echo '<pre>';
+//        print_r($content);
+//        exit();
+        
+        $data['department_list']=$this->CM->getAll('department', 'name ASC' );
        
         
-        $data['subject_name'] = $content->subject_name;
+        $data['name'] = $content->name;
+        $data['department_id'] = $content->department_id;
         $data['subject_code'] = $content->subject_code;
         //$data['status'] = $content->status;
         
@@ -116,7 +125,8 @@ class Subject extends CI_Controller
         }
         else
         {
-            $datas['subject_name'] = $this->input->post('subject_name'); 
+            $datas['name'] = $this->input->post('name');
+            $datas['department_id'] = $this->input->post('department_id');
             $datas['subject_code'] = $this->input->post('subject_code'); 
             //$datas['status'] = $this->input->post('status');
             //$datas['entryby']=$this->session->userdata('uid');       

@@ -338,6 +338,9 @@ class Report extends MY_Controller
              
         $data['content_list'] = $this->RM->distributeReport($data['sdate'], $data['edate'], $cid); 
              
+//        echo '<pre>';
+//        print_r($data);
+//        exit();
         
             $this->load->view('report/distribute', $data );
          

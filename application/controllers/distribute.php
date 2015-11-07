@@ -37,6 +37,7 @@ class Distribute  extends MY_Controller{
           $data['distribute_from']="";
           $data['collage_id']="";
           $data['teacher_id']="";
+          $data['department_id']="";
           $data['qty']="";
           $data['comments']="";
           
@@ -63,6 +64,7 @@ class Distribute  extends MY_Controller{
             $this->db->trans_start();
             $pur_info['college_id']= $this->input->post('college_id') ;
             $pur_info['teacher_id']=  $this->input->post('teacher_id');
+            $pur_info['department_id']=  $this->input->post('department_id');
             $pur_info['comments']=  $this->input->post('comments');
             $pur_info['status']= 1;
             $pur_info['entryby']=$this->_uid;   

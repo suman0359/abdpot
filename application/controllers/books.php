@@ -54,9 +54,11 @@ class Books extends CI_Controller
        
 
         $data['group_list']=$this->CM->getAll('group', 'name ASC' );
-        $data['subject_list']=$this->CM->getAll('tbl_subject', 'subject_name ASC' );
+        $data['subject_list']=$this->CM->getAll('tbl_subject', 'name ASC' );
         
-        
+//        echo '<pre>';
+//        print_r($data['subject_list']);
+//        exit();
 
         $data['name'] = "";
         $data['group_id'] = "";
@@ -113,7 +115,7 @@ class Books extends CI_Controller
         
         $content = $this->CM->getInfo('books', $id) ; 
         $data['group_list']=$this->CM->getAll('group', 'name ASC' );
-        $data['subject_list']=$this->CM->getAll('tbl_subject', 'subject_name ASC' );
+        $data['subject_list']=$this->CM->getAll('tbl_subject', 'name ASC' );
         
         $data['name'] = $content->book_name;
         $data['group_id'] = $content->group_id;

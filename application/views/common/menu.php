@@ -41,11 +41,22 @@
                                 <i class="fa fa-share-alt-square"></i> <span>Thana</span>
                             </a>
                         </li>
-   
+                        
+                        <li class="<?php if($c=='college')echo "active"  ?>">
+                            <a href="<?php echo base_url(); ?>college">
+                                <i class="fa fa-university"></i> <span>College</span>
+                            </a>
+                        </li>
                         
                         <li class="<?php if($c=='department')echo "active"  ?>">
                             <a href="<?php echo base_url(); ?>department">
                                 <i class="fa fa-puzzle-piece"></i> <span>Department</span>
+                            </a>
+                        </li>
+                        
+                        <li class="<?php if($c=='teachers')echo "active"  ?>">
+                            <a href="<?php echo base_url(); ?>teachers">
+                                <i class="fa fa-users"></i> <span>Teachers</span>
                             </a>
                         </li>
 
@@ -55,11 +66,6 @@
                             </a>
                         </li>
                         
-                        <li class="<?php if($c=='college')echo "active"  ?>">
-                            <a href="<?php echo base_url(); ?>college">
-                                <i class="fa fa-university"></i> <span>College</span>
-                            </a>
-                        </li>
 
                         <li class="<?php if($c=='books')echo "active"  ?>">
                             <a href="<?php echo base_url(); ?>books">
@@ -67,11 +73,6 @@
                             </a>
                         </li>
 
-                        <li class="<?php if($c=='teachers')echo "active"  ?>">
-                            <a href="<?php echo base_url(); ?>teachers">
-                                <i class="fa fa-users"></i> <span>Teachers</span>
-                            </a>
-                        </li>
             </ul>
     <?php } ?>                   
 
