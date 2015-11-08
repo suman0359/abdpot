@@ -110,7 +110,7 @@ $this->load->view('common/sidebar');
                     ?>
 
                 </div>
-                
+
                 <div class="control-group">
                     <label class="control-label">Department</label>
                     <?php
@@ -124,7 +124,7 @@ $this->load->view('common/sidebar');
 
                 </div>
 
-               
+
                 <div class="control-group ">
                     <label class="control-label">Comments</label>
 
@@ -284,10 +284,10 @@ $this->load->view('common/sidebar');
 
                     });
         });
-        
-        
+
+
         // Department showing 
-        
+
         $(".col-md-3").on('change', '#teacher_id', function () {
 
             var teacher = $(this).val();
@@ -313,10 +313,10 @@ $this->load->view('common/sidebar');
 
 
                     });
-        }); 
+        });
 
 
-        
+
         function additemrow(id)
         {
             var id = id;

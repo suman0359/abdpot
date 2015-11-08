@@ -116,7 +116,7 @@ $this->load->view('common/sidebar');
                     </div>
                 </div>
 
-                <div class="control-group ">
+<!--                <div class="control-group ">
 
                     <label class="control-label">Send to Marketing Executive </label>
                     <?php
@@ -128,7 +128,7 @@ $this->load->view('common/sidebar');
                     echo form_dropdown('executive_id', $sup_data, $sid, $class);
                     ?>
 
-                </div> 
+                </div> -->
 
 
                 <div class="control-group ">

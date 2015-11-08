@@ -44,6 +44,7 @@ $this->load->view('common/sidebar');
         <tr>
             <th id="action_btn_align">SL</th>
             <th id="action_btn_align">District Name</th>
+            <th id="action_btn_align">Jonal Name</th>
             <th id="action_btn_align">Action</th>
            
          </tr>
@@ -54,13 +55,18 @@ $this->load->view('common/sidebar');
          <?php 
           //  var_dump($company_list) ; 
           foreach ($district_list as $district){
+              $jonal = $this->CM->getInfo('jonal', $district['jonal_id'] );
+              
+//              echo '<pre>';
+//              print_r($district);
+//              exit();
          ?>
          
          
       <tr id="action_btn_align">
           <td> <?php echo $district['id'] ?></td>
           <td> <?php echo $district['name'] ?></td>
-         
+         <td> <?php echo $jonal->name; ?></td>
           <td>     
                 <a class="btn btn-primary btn-flat" href="<?php echo base_url(); ?>district/edit/<?php echo $district['id'] ?>">
                 <i class="fa fa-pencil-square-o" ></i> Edit </a>

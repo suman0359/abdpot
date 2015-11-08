@@ -44,6 +44,7 @@ $this->load->view('common/sidebar');
                 <tr>
                     <th id="action_btn_align">SL</th>
                     <th id="action_btn_align">Thana Name</th>
+                    <th id="action_btn_align">District Name</th>
                     <th id="action_btn_align">Action</th>
 
                 </tr>
@@ -54,13 +55,14 @@ $this->load->view('common/sidebar');
                 <?php
                 //  var_dump($company_list) ; 
                 foreach ($thana_list as $thana) {
+                    $district = $this->CM->getInfo('district', $thana['district_id'] );
                     ?>
 
 
                     <tr id="action_btn_align">
                         <td> <?php echo $thana['id'] ?></td>
                         <td> <?php echo $thana['name'] ?></td>
-
+                        <td> <?php echo $district->name; ?></td>
                         <td>     
                             <a class="btn btn-primary btn-flat" href="<?php echo base_url(); ?>thana/edit/<?php echo $thana['id'] ?>">
                                 <i class="fa fa-pencil-square-o" ></i> Edit </a>
