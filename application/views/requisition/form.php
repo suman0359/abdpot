@@ -118,7 +118,7 @@ $this->load->view('common/sidebar');
                     <div>
 
                         <?php
-                        $class = 'class="form-control  required" required  id="division_id" ';
+                        $class = 'class="form-control  required" required  id="college_id" ';
                         $sup_data = array("" => "Select College ");
                         foreach ($college_list as $sup) {
                             $sup_data[$sup['id']] = $sup['name'];
@@ -139,6 +139,16 @@ $this->load->view('common/sidebar');
                     echo form_dropdown('department_id', $departments, '', $class);
                     ?>
 
+                </div>
+                
+                <div class="control-group">
+                    <label>Teacher </label>
+                    <div>
+                        <select name="teacher_id" class="form-group form-control" id="teacher_id">
+                            <option value="0" >select  Teacher </option>
+
+                        </select>
+                    </div>
                 </div>
 
 
@@ -183,57 +193,57 @@ $this->load->view('common/sidebar');
     <script>
         $(document).ready(function () {
 
-            $(".main-mid-area").on('change', '#division_id', function () {
-
-                var div_id = $(this).val();
-                $.ajax({
-                    url: "<?php echo base_url() ?>index.php/home/getjonal/" + div_id,
-                    beforeSend: function (xhr) {
-                        xhr.overrideMimeType("text/plain; charset=x-user-defined");
-                        $("#jonal_id").html("<option>Loading .... </option>");
-
-                    }
-                })
-                        .done(function (data) {
-                            $("#jonal_id").html("<option value=''>Select a Jonal </option>");
-                            data = JSON.parse(data);
-                            $.each(data, function (key, val) {
-                                $("#jonal_id").append("<option value='" + val.id + "'>" + val.name + "</option>");
-
-                            });
-
-
-                        });
-            });
-
-            $(".main-mid-area").on('change', '#jonal_id', function () {
-
-                var jone_id = $(this).val();
-                $.ajax({
-                    url: "<?php echo base_url() ?>index.php/home/getcollege/" + jone_id,
-                    beforeSend: function (xhr) {
-                        xhr.overrideMimeType("text/plain; charset=x-user-defined");
-                        $("#college_id").html("<option>Loading .... </option>");
-
-                    }
-                })
-                        .done(function (data) {
-
-                            $("#college_id").html("<option value=''>Select a College </option>");
-                            data = JSON.parse(data);
-                            $.each(data, function (key, val) {
-                                $("#college_id").append("<option value='" + val.id + "'>" + val.name + "</option>");
-
-                            });
-
-
-                        });
-            });
+//            $(".main-mid-area").on('change', '#division_id', function () {
+//
+//                var div_id = $(this).val();
+//                $.ajax({
+//                    url: "<?php echo base_url() ?>index.php/home/getjonal/" + div_id,
+//                    beforeSend: function (xhr) {
+//                        xhr.overrideMimeType("text/plain; charset=x-user-defined");
+//                        $("#jonal_id").html("<option>Loading .... </option>");
+//
+//                    }
+//                })
+//                        .done(function (data) {
+//                            $("#jonal_id").html("<option value=''>Select a Jonal </option>");
+//                            data = JSON.parse(data);
+//                            $.each(data, function (key, val) {
+//                                $("#jonal_id").append("<option value='" + val.id + "'>" + val.name + "</option>");
+//
+//                            });
+//
+//
+//                        });
+//            });
+//
+//            $(".main-mid-area").on('change', '#jonal_id', function () {
+//
+//                var jone_id = $(this).val();
+//                $.ajax({
+//                    url: "<?php echo base_url() ?>index.php/home/getcollege/" + jone_id,
+//                    beforeSend: function (xhr) {
+//                        xhr.overrideMimeType("text/plain; charset=x-user-defined");
+//                        $("#college_id").html("<option>Loading .... </option>");
+//
+//                    }
+//                })
+//                        .done(function (data) {
+//
+//                            $("#college_id").html("<option value=''>Select a College </option>");
+//                            data = JSON.parse(data);
+//                            $.each(data, function (key, val) {
+//                                $("#college_id").append("<option value='" + val.id + "'>" + val.name + "</option>");
+//
+//                            });
+//
+//
+//                        });
+//            });
 
 
             // Department showing 
 
-            $(".col-md-3").on('change', '#division_id', function () {
+            $(".col-md-3").on('change', '#college_id', function () {
 
                 var teacher = $(this).val();
                 $.ajax({
@@ -256,6 +266,32 @@ $this->load->view('common/sidebar');
                     });
                 });
         });
+        
+        
+        //Teacher Select 
+            $(".main-mid-area").on('change', '#division_id', function () {
+
+                var division_id = $(this).val();
+                $.ajax({
+                    url: "<?php echo base_url() ?>index.php/home/getteacher/" + division_id,
+                    beforeSend: function (xhr) {
+                        xhr.overrideMimeType("text/plain; charset=x-user-defined");
+                        $("#teacher_id").html("<option>Loading .... </option>");
+
+                    }
+                })
+                .done(function (data) {
+
+                    $("#teacher_id").html("<option value=''>Select a Teacher </option>");
+                    data = JSON.parse(data);
+                    $.each(data, function (key, val) {
+                        $("#teacher_id").append("<option value='" + val.id + "'>" + val.name + "</option>");
+
+                    });
+
+
+                });
+            });
         
         //-----------------------------------
 
