@@ -25,7 +25,7 @@ $this->load->view('common/sidebar');
     <!-- Start Working area --> 
 <div class="col-md-9 main-mid-area"> 
    <?php $this->load->view('common/error_show') ?>
-    <h2> Add New Division </h2>
+    <h2> Add New Department </h2>
     
 
     <?php 
@@ -42,7 +42,7 @@ $this->load->view('common/sidebar');
                 'class' =>'form-control ', 
                 'value' => $name, 
                 'required' => 'required',
-                'placeholder'=>'Division Name',
+                'placeholder'=>'Department Name',
                 'size' => '50'
                 
             );
@@ -53,14 +53,14 @@ $this->load->view('common/sidebar');
 
     
     
-    <div class="col-md-2"><br>
+    <div class="col-md-3"><br>
         <div class="pull-right"> 
 
     <?php 
     $form_input = array(
         'name' => 'submit',
         'class' =>'btn btn-lg btn-success ', 
-        'value' => 'Add Division'
+        'value' => 'Add Department'
        
     );
 

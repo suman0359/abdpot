@@ -131,13 +131,13 @@ $this->load->view('common/sidebar');
                <div class="control-group">
                     <label class="control-label">Department</label>
                     <?php
-                    $class = 'class="form-control " id="department_id" ';
-                    $teachers[''] = 'Select a department';
-                    foreach ($deparment_list as $department) {
-                        $departments[['id']] = $department['name'];
-                    }
-                    echo form_dropdown('department_id', $departments, '', $class);
-                    ?>
+                        $class = 'class="form-control  required" required  id="department_id" ';
+                        $sup_data = array("" => "Select Department ");
+                        foreach ($department_list as $sup) {
+                            $sup_data[$sup['id']] = $sup['name'];
+                        }
+                        echo form_dropdown('department_id', $sup_data, $sid, $class);
+                        ?>
 
                 </div>
                 
@@ -243,37 +243,37 @@ $this->load->view('common/sidebar');
 
             // Department showing 
 
-            $(".col-md-3").on('change', '#college_id', function () {
-
-                var teacher = $(this).val();
-                $.ajax({
-                    url: "<?php echo base_url() ?>index.php/department/getdepartmentbyteacher/" + teacher,
-                    beforeSend: function (xhr) {
-                        xhr.overrideMimeType("text/plain; charset=x-user-defined");
-                        $("#department_id").html("<option>Loading .... </option>");
-
-                    }
-                })
-                .done(function (data) {
-                    /* if ( console && console.log ) {
-                     console.log( "Sample of data:", data.slice( 0, 100 ) );
-                     }*/
-
-                    $("#department_id").html("<option value=''>Select a Department </option>");
-                    data = JSON.parse(data);
-                    $.each(data, function (key, val) {
-                        $("#department_id").append("<option value='" + val.id + "'>" + val.name + "</option>");
-                    });
-                });
-        });
+//            $(".col-md-3").on('change', '#college_id', function () {
+//
+//                var teacher = $(this).val();
+//                $.ajax({
+//                    url: "<?php echo base_url() ?>index.php/department/getdepartmentbyteacher/" + teacher,
+//                    beforeSend: function (xhr) {
+//                        xhr.overrideMimeType("text/plain; charset=x-user-defined");
+//                        $("#department_id").html("<option>Loading .... </option>");
+//
+//                    }
+//                })
+//                .done(function (data) {
+//                    /* if ( console && console.log ) {
+//                     console.log( "Sample of data:", data.slice( 0, 100 ) );
+//                     }*/
+//
+//                    $("#department_id").html("<option value=''>Select a Department </option>");
+//                    data = JSON.parse(data);
+//                    $.each(data, function (key, val) {
+//                        $("#department_id").append("<option value='" + val.id + "'>" + val.name + "</option>");
+//                    });
+//                });
+//        });
         
         
         //Teacher Select 
-            $(".main-mid-area").on('change', '#division_id', function () {
+            $(".main-mid-area").on('change', '#college_id', function () {
 
-                var division_id = $(this).val();
+                var college_id = $(this).val();
                 $.ajax({
-                    url: "<?php echo base_url() ?>index.php/home/getteacher/" + division_id,
+                    url: "<?php echo base_url() ?>index.php/home/getteacher/" + college_id,
                     beforeSend: function (xhr) {
                         xhr.overrideMimeType("text/plain; charset=x-user-defined");
                         $("#teacher_id").html("<option>Loading .... </option>");

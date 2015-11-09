@@ -39,7 +39,7 @@ class Requisition extends MY_Controller{
       
        $jid = $this->session->userdata('jonal_id') ;
         $data['college_list'] = $this->CM->getAllWhere('college', array('jonal_id'=>$jid), 'name ASC') ; 
-           
+        $data['department_list'] = $this->CM->getAll('department', 'name ASC') ;
         
           
         $this->load->library('form_validation');

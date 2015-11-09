@@ -79,7 +79,7 @@ class Department extends MY_Controller
         $this->form_validation->set_rules( 'name', 'required');
         if ($this->form_validation->run() == FALSE)
         {
-                $this->load->view('division/form', $data); 
+                $this->load->view('department/form', $data); 
         }
         else
         {
@@ -87,10 +87,10 @@ class Department extends MY_Controller
             //$datas['status'] = $this->input->post('status');
             //$datas['entryby']=$this->session->userdata('uid');       
  
-                if($this->CM->update('division', $datas, $id)){
+                if($this->CM->update('department', $datas, $id)){
                     $msg = "Operation Successfull!!";
                     $this->session->set_flashdata('success', $msg);
-                    redirect('division'); 
+                    redirect('department'); 
                 }
         }
         
