@@ -32,16 +32,23 @@ class Commons extends CI_Model {
         $result = $query_result->row();
         return $result;
     }
+    
+    /*
+     * (First Where, Second Where, Table Name)
+     */
+    public function getAllAndWhere($first, $second, $table_name){
+        $this->db->select('*');
+        $this->db->where($first);
+        $this->db->where($second);
+        $this->db->from($table_name);
+        
+        $query_result = $this->db->get();
+        $result = $query_result->result();
+        return $result;
+    }
+    
+    
 
-    // public function getIdWhere($teacher_id) {
-    //     $this->db->select('dep_id');
-    //     $this->db->where('id', $teacher_id);
-    //     $this->db->from('teachers');
-
-    //     $query_result = $this->db->get();
-    //     $result = $query_result->row();
-    //     return $result;
-    // }
 
     public function words_count($text, $no) {
         $text = strip_tags($text);

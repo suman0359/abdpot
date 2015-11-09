@@ -69,9 +69,10 @@ class Home extends MY_Controller
     }
     
     // Select A Teachers From Teachers Table by dep_id(Department ID)
-    public function getteacherbydepartment($dep_id){
-        $dep_id = trim($dep_id); 
-        $teacherlist=$this->CM->getAllWhere('teachers', array('dep_id'=> $dep_id)) ;
+    public function getteacherbycollegeanddepartment($college_id, $department_id, $table_name){
+        $department_id = trim($department_id); 
+        $college_id = trim($college_id); 
+        $teacherlist=$this->CM->getAllAndWhere(array('college_id'=> $college_id), array('dep_id'=> $department_id), 'teachers') ;
 
         echo json_encode($teacherlist) ; 
          
