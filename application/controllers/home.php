@@ -68,6 +68,15 @@ class Home extends MY_Controller
          
     }
     
+    // Select A Teachers From Teachers Table by dep_id(Department ID)
+    public function getteacherbydepartment($dep_id){
+        $dep_id = trim($dep_id); 
+        $teacherlist=$this->CM->getAllWhere('teachers', array('dep_id'=> $dep_id)) ;
+
+        echo json_encode($teacherlist) ; 
+         
+    }
+    
     public function getdepartmentidbyid($teacher_id){
         $teacher_id = trim($teacher_id); 
         //Selector Column Name || Where(Column Name) || Where Passed value || From(Table Name)

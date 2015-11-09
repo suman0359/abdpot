@@ -269,11 +269,11 @@ $this->load->view('common/sidebar');
         
         
         //Teacher Select 
-            $(".main-mid-area").on('change', '#college_id', function () {
+            $(".main-mid-area").on('change', '#department_id', function () {
 
-                var college_id = $(this).val();
+                var department_id = $(this).val();
                 $.ajax({
-                    url: "<?php echo base_url() ?>index.php/home/getteacher/" + college_id,
+                    url: "<?php echo base_url() ?>index.php/home/getteacherbydepartment/" + department_id,
                     beforeSend: function (xhr) {
                         xhr.overrideMimeType("text/plain; charset=x-user-defined");
                         $("#teacher_id").html("<option>Loading .... </option>");
