@@ -54,7 +54,10 @@ class Report_model extends CI_Model{
       @$sql="
           SELECT 
           t.id as tid, t.transfer_time , t.challan_date , t.memo_no , t.transfer_to , t.entryby , t.comments, 
-          c.name cname , c.id, u.name as empname, u.id , 
+          c.name cname , c.id, u.name as empname, u.id , t.teacher_id, 
+          (SELECT name dep_id FROM teachers WHERE id = t.teacher_id) as teacher_name,
+          (SELECT dep_id FROM teachers WHERE id = t.teacher_id) as department_id,
+          (SELECT name FROM department WHERE id = department_id) as department_name,
           (SELECT SUM(quantity) FROM transfer_item WHERE transfer_id = t.id ) as bookqty
           FROM user u, college c, transfer t 
           WHERE 

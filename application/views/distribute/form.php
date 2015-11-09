@@ -95,6 +95,19 @@ $this->load->view('common/sidebar');
 
                     <a class="btn btn-xs btn-primary  "  data-target="#college_list" data-toggle="modal" href="JavaScript:void(0)">Change College</a>
                 </div>
+                
+                <div class="control-group">
+                    <label class="control-label">Department</label>
+                    <?php
+                    $class = 'class="form-control  required" required  id="department_id" ';
+                    $sup_data = array("" => "Select Department ");
+                    foreach ($department_list as $sup) {
+                        $sup_data[$sup['id']] = $sup['name'];
+                    }
+                    echo form_dropdown('department_id', $sup_data, $sid, $class);
+                    ?>
+
+                </div>
 
                 <div class="control-group">
                     <label class="control-label">Teacher</label>
@@ -111,18 +124,7 @@ $this->load->view('common/sidebar');
 
                 </div>
 
-                <div class="control-group">
-                    <label class="control-label">Department</label>
-                    <?php
-                    $class = 'class="form-control " id="department_id" ';
-                    $teachers[''] = 'Select a department';
-                    foreach ($deparment_list as $department) {
-                        $departments[['id']] = $department['name'];
-                    }
-                    echo form_dropdown('department_id', $departments, '', $class);
-                    ?>
-
-                </div>
+                
 
 
                 <div class="control-group ">
@@ -258,62 +260,35 @@ $this->load->view('common/sidebar');
 
 
 
-        $(".col-md-3").on('change', '#collage_id', function () {
+        //Teacher Select 
+            $(".main-mid-area").on('change', '#college_id', function () {
+                var college_id = $(this).val();
+                $(".main-mid-area").on('change', '#department_id', function () {
 
-            var collage = $(this).val();
-            $.ajax({
-                url: "<?php echo base_url() ?>index.php/teachers/getteacherbycollage/" + collage,
-                beforeSend: function (xhr) {
-                    xhr.overrideMimeType("text/plain; charset=x-user-defined");
-                    $("#teacher_id").html("<option>Loading .... </option>");
+                    var department_id = $(this).val();
+                    $.ajax({
+                        url: "<?php echo base_url() ?>index.php/home/getteacherbycollegeanddepartment/" + college_id + "/" + department_id,
+                        beforeSend: function (xhr) {
+                            xhr.overrideMimeType("text/plain; charset=x-user-defined");
+                            $("#teacher_id").html("<option>Loading .... </option>");
 
-                }
-            })
-                    .done(function (data) {
-                        /* if ( console && console.log ) {
-                         console.log( "Sample of data:", data.slice( 0, 100 ) );
-                         }*/
+                        }
+                    })
+                            .done(function (data) {
 
-                        $("#teacher_id").html("<option value=''>Select a Teacher </option>");
-                        data = JSON.parse(data);
-                        $.each(data, function (key, val) {
-                            $("#teacher_id").append("<option value='" + val.id + "'>" + val.name + "</option>");
+                                $("#teacher_id").html("<option value=''>Select a Teacher </option>");
+                                data = JSON.parse(data);
+                                $.each(data, function (key, val) {
+                                    $("#teacher_id").append("<option value='" + val.id + "'>" + val.name + "</option>");
 
-                        });
-
-
-                    });
-        });
+                                });
 
 
-        // Department showing 
-
-        $(".col-md-3").on('change', '#teacher_id', function () {
-
-            var teacher = $(this).val();
-            $.ajax({
-                url: "<?php echo base_url() ?>index.php/department/getdepartmentbyteacher/" + teacher,
-                beforeSend: function (xhr) {
-                    xhr.overrideMimeType("text/plain; charset=x-user-defined");
-                    $("#department_id").html("<option>Loading .... </option>");
-
-                }
-            })
-                    .done(function (data) {
-                        /* if ( console && console.log ) {
-                         console.log( "Sample of data:", data.slice( 0, 100 ) );
-                         }*/
-
-                        $("#department_id").html("<option value=''>Select a Department </option>");
-                        data = JSON.parse(data);
-                        $.each(data, function (key, val) {
-                            $("#department_id").append("<option value='" + val.id + "'>" + val.name + "</option>");
-
-                        });
+                            });
+                });
+            });
 
 
-                    });
-        });
 
 
 

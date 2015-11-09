@@ -22,7 +22,10 @@ class Distribute  extends MY_Controller{
         
          $jid = $this->session->userdata('jonal_id') ;
          $data['colage_list'] = $this->CM->getAllWhere('college', array('jonal_id'=>$jid), 'name ASC') ; 
-          
+         
+         
+
+         
          if($jid==0)
          {
              redirect ('error/accessdeny'); 
@@ -43,8 +46,8 @@ class Distribute  extends MY_Controller{
           
           $data['date']=date('d-m-Y');
           
-          $data['teache_list'] = $this->CM->getAllWhere('teachers', array('college_id'=>$cid), 'name ASC') ; 
-          
+          //$data['teache_list'] = $this->CM->getAllWhere('teachers', array('college_id'=>$cid), 'name ASC') ; 
+          $data['department_list'] = $this->CM->getAll('department', 'name ASC') ;
           if($cid!=NULL) { 
               $data['college'] = $this->CM->getinfo('college', $cid) ; 
               $data['allbooks'] = $this->CM->getcollegebooks($cid) ;

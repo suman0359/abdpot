@@ -117,6 +117,7 @@ $this->load->view('common/sidebar');
 
                         <td> 
                             <?php
+                            
                             echo $college->name;
                             ?> 
                         </td>
@@ -126,7 +127,8 @@ $this->load->view('common/sidebar');
                         <td> Teachers  : </td>
                         <td> 
                             <?php
-                            $teachers = $this->CM->getwhere('teachers', array('college_id' => $college->id));
+                            $teachers = $this->CM->getwhere('teachers', array('id' => $transfer_info->teacher_id));
+                                                       
                             echo $teachers->name;
                             ?> 
                         </td>

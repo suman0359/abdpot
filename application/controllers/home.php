@@ -81,8 +81,8 @@ class Home extends MY_Controller
     public function getdepartmentidbyid($teacher_id){
         $teacher_id = trim($teacher_id); 
         //Selector Column Name || Where(Column Name) || Where Passed value || From(Table Name)
-        echo $department_id=  $this->CM->getIdWhere('dep_id', 'id', $teacher_id, 'teachers');
-
+        $department_id=  $this->CM->getIdWhere('dep_id', 'id', $teacher_id, 'teachers');
+        $teacherlist=$this->CM->getAllWhere('department', array('id'=> $department_id->dep_id)) ;
 //         $department_name = $this->CM->getIdWhere('name', 'id', $department_id->dep_id, 'department');
 //
 //         echo '<pre>';
@@ -90,7 +90,7 @@ class Home extends MY_Controller
 //         print_r($department_name);
 //         exit();
 
-        echo json_encode($department_id) ; 
+        echo json_encode($teacherlist) ; 
     }
     
   

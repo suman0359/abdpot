@@ -243,8 +243,9 @@ class Report extends MY_Controller
         
         $data['content_list'] = $this->RM->transferReport($data['sdate'], $data['edate'], $did); 
              
+       
         
-            $this->load->view('report/transfer', $data );
+        $this->load->view('report/transfer', $data );
          
         
     }

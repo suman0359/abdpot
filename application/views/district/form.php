@@ -75,7 +75,7 @@ $this->load->view('common/sidebar');
                 <div class="form-group">
 
 
-                    <label>Jonal Name </label>
+                    <label>Jone/Jonal Name </label>
                     <div>
                         <select name="jonal_id" class="form-group form-control">
                             <option value="0" >select Option</option>

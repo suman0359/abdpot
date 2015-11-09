@@ -42,7 +42,7 @@ $this->load->view('common/sidebar');
                         'class' => 'form-control ',
                         'value' => $name,
                         'required' => 'required',
-                        'placeholder' => 'Jonal Name',
+                        'placeholder' => 'Jone/Jonal Name',
                         'size' => '50'
                     );
                     echo form_input($form_input);
@@ -97,7 +97,7 @@ if ($status == 0) {
                     $form_input = array(
                         'name' => 'submit',
                         'class' => 'btn btn-lg btn-success ',
-                        'value' => 'Add Jonal'
+                        'value' => 'Add Jone/Jonal'
                     );
 
                     echo form_submit($form_input);

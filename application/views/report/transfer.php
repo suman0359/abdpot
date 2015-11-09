@@ -87,6 +87,8 @@ $this->load->view('common/sidebar');
             <th >Date </th>
             
             <th >To College </th>
+            <th>To Teacher</th>
+            <th>To Department</th>
             <th >Send By </th>
             <th > Total Book </th>
             <th >Comment </th>
@@ -102,6 +104,8 @@ $this->load->view('common/sidebar');
              <td> <?php echo $content['memo_no'] ?>  </td>
              <td> <?php echo date( "d-m-Y" , strtotime($content['challan_date'] )) ; ?>  </td>
              <td> <?php echo $content['cname'] ?>  </td>
+             <td> <?php echo $content['teacher_name'] ?> </td>
+             <td> <?php echo $content['department_name'] ?> </td>
              <td> <?php echo $content['empname'] ?>  </td>
              <td> <?php echo $content['bookqty'] ?>  </td>
              <td> <?php echo $content['comments'] ?>  </td>

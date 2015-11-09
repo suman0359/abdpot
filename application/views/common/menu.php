@@ -26,7 +26,7 @@
 
                         <li class="<?php if($c=='jonal')echo "active"  ?>">
                             <a href="<?php echo base_url(); ?>jonal">
-                                <i class="fa fa-share-alt-square"></i> <span>Jonal</span>
+                                <i class="fa fa-share-alt-square"></i> <span>Jone or Jonal</span>
                             </a>
                         </li>
 

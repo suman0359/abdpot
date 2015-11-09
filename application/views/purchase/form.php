@@ -136,7 +136,7 @@ $this->load->view('common/sidebar');
                     <label class="control-label">Send to Division </label>
                     <?php
                     $class = 'class="form-control  required" required  id="division_id" ';
-                    $sup_data = array("" => "Select Supplier");
+                    $sup_data = array("" => "Select Division");
                     foreach ($div_list as $sup) {
                         $sup_data[$sup['id']] = $sup['name'];
                     }
@@ -164,7 +164,7 @@ $this->load->view('common/sidebar');
                     <label>College </label>
                     <div>
                         <select name="college_id" class="form-group form-control" id="college_id">
-                            <option value="0" >select  Jonal  First </option>
+                            <option value="0" >select  Jone or Jonal  First </option>
 
                         </select>
                     </div>
@@ -176,12 +176,21 @@ $this->load->view('common/sidebar');
                     <label>Teacher </label>
                     <div>
                         <select name="teacher_id" class="form-group form-control" id="teacher_id">
-                            <option value="0" >select  Teacher </option>
+                            <option value="0" >Select College First</option>
 
                         </select>
                     </div>
                 </div>
 
+
+                <div class="control-group">
+
+
+                    <label>Department </label>
+                    <div>
+                        <p name="department_id" id="department_id"></p>
+                    </div>
+                </div>
 
                 <div class="control-group ">
                     <label class="control-label">Comments</label>
@@ -215,6 +224,8 @@ $this->load->view('common/sidebar');
 
     <script>
         $(document).ready(function () {
+            
+            // Jonal Select by Ajax
 
             $(".main-mid-area").on('change', '#division_id', function () {
 
@@ -239,6 +250,7 @@ $this->load->view('common/sidebar');
                 });
             });
 
+            // College Select by Ajax
             $(".main-mid-area").on('change', '#jonal_id', function () {
 
                 var jone_id = $(this).val();
@@ -264,7 +276,7 @@ $this->load->view('common/sidebar');
             });
 
 
-            //Deaprtment Select 
+            //Taacher Select by Ajax from College 
             $(".main-mid-area").on('change', '#college_id', function () {
 
                 var college_id = $(this).val();
@@ -283,6 +295,31 @@ $this->load->view('common/sidebar');
                     $.each(data, function (key, val) {
                         $("#teacher_id").append("<option value='" + val.id + "'>" + val.name + "</option>");
 
+                    });
+
+
+                });
+            });
+            
+            //Department Select by Ajax from Teacher 
+            $(".main-mid-area").on('change', '#teacher_id', function () {
+
+                var teacher_id = $(this).val();
+                $.ajax({
+                    url: "<?php echo base_url() ?>index.php/home/getdepartmentidbyid/" + teacher_id,
+                    beforeSend: function (xhr) {
+                        xhr.overrideMimeType("text/plain; charset=x-user-defined");
+                        $("#department_id").html("<p></p>");
+
+                    }
+                })
+                .done(function (data) {
+
+                    //$("#department_id").html("<option value=''>Select a Department </option>");
+                    data = JSON.parse(data);
+                    $.each(data, function (key, val) {
+                        $("#department_id").append("<p>" + val.name + "</p>");
+                        
                     });
 
 

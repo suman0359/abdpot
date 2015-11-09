@@ -62,8 +62,12 @@ class Purchase extends MY_Controller {
             $division_id = $this->input->post('division_id');
             $jonal_id = $this->input->post('jonal_id');
             $college_id = $this->input->post('college_id');
-
-
+            $teacher_id= $this->input->post('teacher_id');
+            $department_id = $this->CM->getIdWhere('id', 'id', $teacher_id, 'teachers');
+            
+            $department_id = $department_id->id;
+            
+            
             //New supplier Create
 
 
@@ -87,6 +91,11 @@ class Purchase extends MY_Controller {
             $purchase_date = strtotime($this->input->post('date'));
             $pur_info['challan_date'] = date('Y-m-d', $purchase_date);
 
+            $pur_info['transfer_from_div'] = $division_id;
+            $pur_info['to_jonal']= $jonal_id;
+            $pur_info['college_id']=$college_id;
+            $pur_info['teacher_id']=$teacher_id;
+            
 
             $pid = $this->input->post('pid');
             $cost = $this->input->post('price');

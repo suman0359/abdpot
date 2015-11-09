@@ -38,7 +38,7 @@ $this->load->view('common/sidebar');
     <table class="table table-bordered table-hover ">
         <tr>
             <th id="action_btn_align">SL</th>
-            <th id="action_btn_align">Jonal Name</th>
+            <th id="action_btn_align">Jone/Jonal Name</th>
             <th id="action_btn_align">Division Name</th>
             <th id="action_btn_align">Action</th>
            
