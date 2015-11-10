@@ -90,7 +90,7 @@ $this->load->view('common/sidebar');
 
                 <div class="control-group">
                     <label class="control-label">School/Collage</label> <br/>
-                    <input type="hidden" name="college_id" id="college_id" value="<?php echo $cid ?>" />
+                    <input type="hidden" name="college_id" id="college_id_value" value="<?php echo $cid ?>" />
                     <b> <?php echo $college->name; ?> </b>
 
                     <a class="btn btn-xs btn-primary  "  data-target="#college_list" data-toggle="modal" href="JavaScript:void(0)">Change College</a>
@@ -110,18 +110,13 @@ $this->load->view('common/sidebar');
                 </div>
 
                 <div class="control-group">
-                    <label class="control-label">Teacher</label>
+                    <label>Teacher </label>
+                    <div>
+                        <select name="teacher_id" class="form-group form-control" id="teacher_id">
+                            <option value="0" >select  Teacher </option>
 
-
-                    <?php
-                    $class = 'class="form-control " id="teacher_id" ';
-                    $teachers[''] = 'Select a teacher';
-                    foreach ($teache_list as $teacher) {
-                        $teachers[$teacher['id']] = $teacher['name'];
-                    }
-                    echo form_dropdown('teacher_id', $teachers, '', $class);
-                    ?>
-
+                        </select>
+                    </div>
                 </div>
 
                 
@@ -261,10 +256,11 @@ $this->load->view('common/sidebar');
 
 
         //Teacher Select 
-            $(".main-mid-area").on('change', '#college_id', function () {
-                var college_id = $(this).val();
+            
                 $(".main-mid-area").on('change', '#department_id', function () {
-
+                
+                    var college_id = document.getElementById("college_id_value");
+                    var college_id = college_id.value;
                     var department_id = $(this).val();
                     $.ajax({
                         url: "<?php echo base_url() ?>index.php/home/getteacherbycollegeanddepartment/" + college_id + "/" + department_id,
@@ -286,7 +282,7 @@ $this->load->view('common/sidebar');
 
                             });
                 });
-            });
+        
 
 
 
