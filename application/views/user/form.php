@@ -152,6 +152,7 @@ $this->load->view('common/sidebar');
         <option value="1" <?php if($user_type==1) echo 'selected' ;?>  >Supper Admin</option>
         <option value="2" <?php if($user_type==2) echo 'selected' ;?>  >Admin</option>
         <option value="3" <?php if($user_type==3) echo 'selected' ;?>  >Division User </option>
+        <option value="4" <?php if($user_type==4) echo 'selected' ;?>  >Jonal Head </option>
          
     </select>
     </div>

@@ -142,6 +142,7 @@ class User extends CI_Controller
         $password = $content->password;
         $data['user_type'] = $content->user_type;
         
+        
         $this->load->library('form_validation');
         $this->form_validation->set_rules( 'email', 'password','required');
         if ($this->form_validation->run() == FALSE)

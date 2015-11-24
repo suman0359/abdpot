@@ -1,7 +1,8 @@
     
 <?php 
-  $c = $this->uri->rsegment(1) ; 
-  if($this->session->userdata('user_type') == '1') { 
+  $c = $this->uri->rsegment(1); 
+  $user_type=$this->session->userdata('user_type');
+  if($user_type == '1') { 
 ?>
        
             <ul class="sidebar-menu"> 

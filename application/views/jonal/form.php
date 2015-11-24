@@ -73,6 +73,29 @@ $this->load->view('common/sidebar');
                 </div>
             </div>
 
+            <div class="col-md-3">
+                <div class="form-group">
+
+
+                    <label>Jonal Head Name </label>
+                    <div>
+                        <select name="division_id" class="form-group form-control">
+                            <option value="0" >select Option</option>
+                            <?php foreach ($division_list as $division) { ?>
+
+                                <option value="<?php echo $division["id"]; ?>" 
+                                        <?php if ($division["id"] == $division_id) {
+                                            echo 'selected';
+                                        } ?> >
+                                <?php echo $division["name"]; ?>
+                                </option>
+
+<?php } ?>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
             <!-- <div class="col-md-3">
                     <label> Publication Status </label><br>
             <label class="radio-inline">

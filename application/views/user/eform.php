@@ -134,16 +134,17 @@ $this->load->view('common/sidebar');
     ?>
     
 </div> 
-<div class="form-group">
+<div class="form-group user_type_option">
     
     <label>User Type </label>
     <div>
-    <select name="user_type" class="form-group form-control">
-        <option value="0" <?php if($user_type==0) echo 'selected' ;?> >select Option</option>
-        <option value="1" <?php if($user_type==1) echo 'selected' ;?>  >Supper Admin</option>
-        <option value="2" <?php if($user_type==2) echo 'selected' ;?>  >Admin</option>
-        <option value="3" <?php if($user_type==3) echo 'selected' ;?>  >Division User </option>
-    </select>
+        <select name="user_type" class="form-group form-control" id="user_type">
+            <option value="0" <?php if($user_type==0) echo 'selected' ;?> >select Option</option>
+            <option value="1" <?php if($user_type==1) echo 'selected' ;?>  >Supper Admin</option>
+            <option value="2" <?php if($user_type==2) echo 'selected' ;?>  >Admin</option>
+            <option value="3" <?php if($user_type==3) echo 'selected' ;?>  >Division User </option>
+            <option value="4" <?php if($user_type==4) echo 'selected' ;?>  >Jonal Head </option>
+        </select>
     </div>
 </div>
 
@@ -188,6 +189,37 @@ $this->load->view('common/sidebar');
     
 
 </div>
+
+<script type="text/javascript">
+    
+    $(".user_type_option").on('change', '#user_type', function () {
+                
+    var college_id = document.getElementById("college_id_value");
+    var college_id = college_id.value;
+    var department_id = $(this).val();
+    // $.ajax({
+    //     url: "<?php echo base_url() ?>index.php/home/getteacherbycollegeanddepartment/" + college_id + "/" + department_id,
+    //     beforeSend: function (xhr) {
+    //         xhr.overrideMimeType("text/plain; charset=x-user-defined");
+    //         $("#teacher_id").html("<option>Loading .... </option>");
+
+    //     }
+    // })
+    //         .done(function (data) {
+
+    //             $("#teacher_id").html("<option value=''>Select a Teacher </option>");
+    //             data = JSON.parse(data);
+    //             $.each(data, function (key, val) {
+    //                 $("#teacher_id").append("<option value='" + val.id + "'>" + val.name + "</option>");
+
+    //             });
+
+
+    //         });
+});
+
+</script>
+
 <!-- End  Working area --> 
 <?php $this->load->view('common/footer') ?>
         

@@ -70,7 +70,8 @@ $this->load->view('common/sidebar');
                         
           <?php if($user['user_type']==1) echo 'Supper Admin' ;?>   
         <?php if($user['user_type']==2) echo 'Admin' ;?>   
-         <?php if($user['user_type']==3) echo 'Division User' ;?>   
+         <?php if($user['user_type']==3) echo 'Division User' ;?>
+         <?php if($user['user_type']==4) echo 'Jonal Head' ;?>    
         
                   </td>
                   <td >     <div class="input-group-addon">

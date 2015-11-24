@@ -102,6 +102,11 @@ class Jonal extends CI_Controller
         
         $content = $this->CM->getInfo('jonal', $id) ; 
         $data['division_list']=$this->CM->getTotalALL('division');
+        $data['jonal_head_list']=$this->CM->getwhere('user', array('user_type' => 5);
+       
+       // echo "<pre>";
+       // print_r($data['jonal_head_list']);
+       // exit();
        
         
         $data['name'] = $content->name;

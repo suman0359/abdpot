@@ -39,6 +39,7 @@ $this->load->view('common/sidebar');
         <tr>
             <th id="action_btn_align">SL</th>
             <th id="action_btn_align">Jone/Jonal Name</th>
+            <th id="action_btn_align">Jone/Jonal Head Name</th>
             <th id="action_btn_align">Division Name</th>
             <th id="action_btn_align">Action</th>
            
@@ -50,12 +51,14 @@ $this->load->view('common/sidebar');
        		//  var_dump($company_list) ; 
          	foreach ($jonal_list as $jonal){
            $division = $this->CM->getInfo('division', $jonal['div_id'] );
+           $jonal_head = $this->CM->getInfo('user', $jonal['jonal_head_id']);
          ?>
          
          
       <tr id="action_btn_align">
           <td> <?php echo $jonal['id'] ?></td>
           <td> <?php echo $jonal['name'] ?></td>
+          <td> <?php echo $jonal_head->name; ?></td>
           <td> <?php echo $division->name; ?></td>
           <td>     
                 <a class="btn btn-primary btn-flat" href="<?php echo base_url(); ?>jonal/edit/<?php echo $jonal['id'] ?>">
