@@ -4,14 +4,15 @@ class User extends CI_Controller
 {
          public $uid;
          public   $module;
-         
+         public $user_type;
          public function __construct() {
          parent::__construct();
         
             $this->load->model('Commons', 'CM') ;  
             $this->module='user';
             $this->uid=$this->session->userdata('uid');
-    }
+            $this->user_type = $this->session->userdata('user_type');
+    }       
     
     public function index()
     {
@@ -46,7 +47,7 @@ class User extends CI_Controller
     
     public function add()
     {
-      if( !$this->CM->checkpermission($this->module,'add', $this->uid))
+      if (!$this->CM->checkpermissiontype($this->module, 'add', $this->user_type))
              redirect ('error/accessdeny');
       
         $data['id'] = $this->CM->getMaxID('user'); 

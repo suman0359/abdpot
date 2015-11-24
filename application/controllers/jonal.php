@@ -54,7 +54,14 @@ class Jonal extends CI_Controller
         //$data['department_list']=$this->CM->getAll('department');
 
         $data['division_list']=$this->CM->getTotalALL('division');
+        $data['jonal_head_list']=$this->CM->getAllwhere('user', array('user_type' => 4)); // Here Jonal Head User Type ID is 4
+        
+//        echo "<pre>";
+//        print_r($data['jonal_head_list']);
+//        exit();
+        
         $data['division_id']="";
+        
 
         $data['name'] = "";
         //$data['status'] = "";
@@ -72,6 +79,8 @@ class Jonal extends CI_Controller
             
             $datas['name'] = $this->input->post('name'); 
             $datas['div_id'] = $this->input->post('division_id');
+            $datas['jonal_head_id'] = $this->input->post('jonal_head');
+            
             
             $datas['status'] = 1;
             //$datas['entryby']=$this->session->userdata('uid');       
@@ -102,11 +111,11 @@ class Jonal extends CI_Controller
         
         $content = $this->CM->getInfo('jonal', $id) ; 
         $data['division_list']=$this->CM->getTotalALL('division');
-        $data['jonal_head_list']=$this->CM->getwhere('user', array('user_type' => 5);
+        $data['jonal_head_list']=$this->CM->getAllwhere('user', array('user_type' => 4)); // Here Jonal Head User Type ID is 4
        
-       // echo "<pre>";
-       // print_r($data['jonal_head_list']);
-       // exit();
+//        echo "<pre>";
+//        print_r($data['jonal_head_list']);
+//        exit();
        
         
         $data['name'] = $content->name;
@@ -123,8 +132,7 @@ class Jonal extends CI_Controller
         {
             $datas['name'] = $this->input->post('name'); 
             $datas['div_id'] = $this->input->post('division_id');
-            //$datas['status'] = $this->input->post('status');
-            //$datas['entryby']=$this->session->userdata('uid');       
+            $datas['jonal_head_id'] = $this->input->post('jonal_head');      
  
                 if($this->CM->update('jonal', $datas, $id)){
                     $msg = "Operation Successfull!!";

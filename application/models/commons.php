@@ -227,6 +227,28 @@ class Commons extends CI_Model {
         }
         return FALSE;
     }
+    
+    public function checkpermissiontype($module, $m_action, $user_type) {
+
+        $where = array('user_type' => $user_type, 'module' => $module);
+        $this->db->where('status !=', 13);
+        $this->db->from('user_permission');
+        $this->db->where($where);
+        $dataps = $this->db->get()->row();
+
+        if ($dataps) {
+            $act = unserialize($dataps->m_action);
+            if ($act) {
+                if (in_array($m_action, $act)) {
+                    return TRUE;
+                } else {
+                    return FALSE;
+                }
+            }
+            return FALSE;
+        }
+        return FALSE;
+    }
 
     function getTotalALL($table, $from = NULL, $limit = NULL) {
 
