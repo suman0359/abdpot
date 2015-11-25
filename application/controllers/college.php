@@ -11,7 +11,7 @@ class College extends CI_Controller
     parent::__construct();
 
     $this->load->model('Commons', 'CM') ;  
-    $this->module='user';
+    $this->module='college';
     $this->uid=$this->session->userdata('uid');
     }
 

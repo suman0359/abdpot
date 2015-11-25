@@ -147,12 +147,23 @@ $this->load->view('common/sidebar');
     
     <label>User Type </label>
     <div>
+        
+        <?php 
+        echo '<pre>';
+        print_r($user_role_list[0]['role_name']);
+        exit();
+        ?>
     <select name="user_type" class="form-group form-control">
-        <option value="0" <?php if($user_type==0) echo 'selected' ;?> >select Option</option>
-        <option value="1" <?php if($user_type==1) echo 'selected' ;?>  >Supper Admin</option>
-        <option value="2" <?php if($user_type==2) echo 'selected' ;?>  >Admin</option>
-        <option value="3" <?php if($user_type==3) echo 'selected' ;?>  >Division User </option>
-        <option value="4" <?php if($user_type==4) echo 'selected' ;?>  >Jonal Head </option>
+        <option value="0" <?php if($user_role->id==0) echo 'selected' ;?> >Select Option</option>
+        <?php foreach($user_role_list as $user_role){ ?>
+            <option value="<?php $user_role->id ?>" <?php if($user_role->id==0) echo 'selected' ;?> ><?php $user_role->role_name; ?></option>
+        <?php } ?>
+        
+<!--        <option value="0" <?php //if($user_type==0) echo 'selected' ;?> >select Option</option>
+        <option value="1" <?php //if($user_type==1) echo 'selected' ;?>  >Supper Admin</option>
+        <option value="2" <?php //if($user_type==2) echo 'selected' ;?>  >Admin</option>
+        <option value="3" <?php //if($user_type==3) echo 'selected' ;?>  >Division User </option>
+        <option value="4" <?php //if($user_type==4) echo 'selected' ;?>  >Jonal Head </option>-->
          
     </select>
     </div>

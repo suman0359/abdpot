@@ -47,11 +47,12 @@ class User extends CI_Controller
     
     public function add()
     {
-      if (!$this->CM->checkpermissiontype($this->module, 'add', $this->user_type))
+      if( !$this->CM->checkpermission($this->module,'index', $this->uid))
              redirect ('error/accessdeny');
       
         $data['id'] = $this->CM->getMaxID('user'); 
         $data['department_list']=$this->CM->getAll('division');
+        $data['user_role_list']=$this->CM->getAll('tbl_user_role');
         
         $data['name'] = "";
         $data['phone'] = "";
@@ -306,10 +307,21 @@ class User extends CI_Controller
         {
             
              $module = $this->input->post('module_name') ; 
-             $tm = count($module) ; 
-             $datas['uid'] = $this->input->post('uid') ; 
-            $uid = $this->input->post('uid') ; 
              
+             echo '<pre>';
+             print_r($module);
+             
+             
+             $tm = count($tm) ; 
+             
+             
+             $datas['uid'] = $this->input->post('uid') ; 
+             $uid = $this->input->post('uid') ; 
+            
+            print_r($uid);
+             
+            exit();
+            
              $this->CM->delete('user_permission',array('uid'=>$uid)) ;              
              for($i = 0; $i < $tm ; $i++)
              {

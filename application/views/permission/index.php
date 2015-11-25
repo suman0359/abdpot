@@ -31,7 +31,11 @@ $this->load->view('common/sidebar');
         <h4 class=" alert alert-info text text-success text-center">Select The Option</h4>
         
         <?php echo form_open('user/permissionset');
-      
+            
+//            echo '<pre>';
+//            print_r($plist);
+//            exit();
+            
             foreach($plist as $list){
         ?>
         
@@ -40,6 +44,9 @@ $this->load->view('common/sidebar');
             <label><?php 
             if($list['module']=="category") echo 'Category' ;
             else if($list['module']=="scategory") echo 'Sub Category' ;
+            else if($list['module']=="teacher") echo 'Teachers' ;
+            else if($list['module']=="college") echo 'College' ;
+            else if($list['module']=="transfer") echo 'Transfer' ;
             else if($list['module']=="department") echo 'Department' ;
             else if($list['module']=="product") echo 'Product' ;
             else if($list['module']=="supplier") echo 'Supplier' ;
@@ -50,6 +57,7 @@ $this->load->view('common/sidebar');
             else if($list['module']=="sale") echo 'Sale Product' ;
             else if($list['module']=="inventory") echo 'Inventory History' ;
             else if($list['module']=="report") echo 'All Report Term' ;
+            
            
             
            
@@ -57,6 +65,8 @@ $this->load->view('common/sidebar');
            <?php if(!empty($list['m_action'])){ 
                
                $listarray = explode(',', $list['m_action']) ;
+               
+               
                
                foreach($listarray as $key => $value ){
                  
