@@ -71,11 +71,11 @@ $this->load->view('common/sidebar');
                foreach($listarray as $key => $value ){
                  
                    ?>
-             <input type="checkbox" name="<?php echo $list['module'] ?>_fname[]" value="<?php echo $value ;?>" <?php if($this->CM->checkpermission($list['module'],$value,$uid)) echo 'checked'; ?> />
+             <input type="checkbox" name="<?php echo $list['module'] ?>_fname[]" value="<?php echo $value ;?>" <?php if($this->CM->checkpermissiontype($list['module'],$value,$user_type))  echo 'checked'; ?> />
              
              &nbsp;<?php 
              if($value=='index') echo 'Information View';
-             if($value=='add') echo 'ADD';
+             else if($value=='add') echo 'ADD';
              else if($value=='edit') echo 'Edit';
              else if($value=='delete') echo 'Delete';
              else if($value=='delete_all') echo 'Delete All';
@@ -99,6 +99,7 @@ $this->load->view('common/sidebar');
            <?php } ?> 
             
              <input type="hidden" name="uid" value="<?php echo $uid; ?>" />
+             <input type="hidden" name="user_type" value="<?php echo $user_type; ?>" />
            <input class="btn btn-lg btn-success " onclick="return confirm('Are you sure want to allow him ');" type="submit" value="Allow Permission" name="submit"/>
            <a href="<?php echo base_url()?>user"  class="btn btn-lg btn-danger"  >Cancel</a>
        <?php echo form_close()?>
