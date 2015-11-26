@@ -4,12 +4,14 @@ class Report extends MY_Controller
 {
     public $uid;
     public $module;
+    public $user_type;
     
     public function __construct() {
         parent::__construct();
         $this->checklogin() ;
-         $this->module='user';
+         $this->module='report';
     $this->uid=$this->session->userdata('uid');
+    $this->user_type = $this->session->userdata('user_type');
     $this->load->Model('Report_model', 'RM') ;
     }
     
@@ -24,8 +26,8 @@ class Report extends MY_Controller
     public function divisioninventory($div_id=1)
     {
      
-        if( !$this->CM->checkpermission($this->module,'index', $this->uid) && $this->session->userdata('user_type')=='3')
-             redirect ('error/accessdeny');
+        if (!$this->CM->checkpermissiontype($this->module, 'divisioninventory', $this->user_type))
+            redirect('error/accessdeny');
         
         if($this->session->userdata('user_type') == '3')
         {
@@ -69,7 +71,7 @@ class Report extends MY_Controller
     public function jonalinventory($jid=1)
     {
      
-        if( !$this->CM->checkpermission($this->module,'index', $this->uid))
+        if( !$this->CM->checkpermission($this->module,'jonalinventory', $this->uid))
              redirect ('error/accessdeny');
         
         
@@ -124,8 +126,8 @@ class Report extends MY_Controller
     public function collegeinventory($cid=1)
     {
      
-        if( !$this->CM->checkpermission($this->module,'index', $this->uid))
-             redirect ('error/accessdeny');
+        if (!$this->CM->checkpermissiontype($this->module, 'collegeinventory', $this->user_type))
+            redirect('error/accessdeny');
         
         
         if($this->session->userdata('user_type') == '5')
@@ -178,6 +180,9 @@ class Report extends MY_Controller
 
     public function requisition()
     {
+      if (!$this->CM->checkpermissiontype($this->module, 'requisition', $this->user_type))
+            redirect('error/accessdeny');
+
         $data['sdate'] = date("Y-m-d") ; 
         $data['edate'] = date("Y-m-d") ; 
         $data['did'] = 'all' ; 
@@ -219,6 +224,9 @@ class Report extends MY_Controller
     
     public function transfer()
     {
+      if (!$this->CM->checkpermissiontype($this->module, 'transfer', $this->user_type))
+            redirect('error/accessdeny');
+
         $data['sdate'] = date("Y-m-d") ; 
         $data['edate'] = date("Y-m-d") ; 
         $data['did'] = 'all' ; 
@@ -253,6 +261,10 @@ class Report extends MY_Controller
     
     public function jonaltransfer()
     {
+
+      if (!$this->CM->checkpermissiontype($this->module, 'jonaltransfer', $this->user_type))
+            redirect('error/accessdeny');
+
         $data['sdate'] = date("Y-m-d") ; 
         $data['edate'] = date("Y-m-d") ; 
         $data['did'] = 'all' ; 
@@ -296,6 +308,9 @@ class Report extends MY_Controller
     
     public function distribute()
     {
+      if (!$this->CM->checkpermissiontype($this->module, 'distribute', $this->user_type))
+            redirect('error/accessdeny');
+          
         $data['sdate'] = date("Y-m-d") ; 
         $data['edate'] = date("Y-m-d") ; 
         $data['did'] = 'all' ; 

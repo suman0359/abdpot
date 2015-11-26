@@ -6,17 +6,21 @@ class Thana extends CI_Controller
 
 	public $uid;
     public $module;
+    public $user_type;
 
     public function __construct() {
     parent::__construct();
 
     $this->load->model('Commons', 'CM') ;  
-    $this->module='user';
+    $this->module='thana';
     $this->uid=$this->session->userdata('uid');
+    $this->user_type = $this->session->userdata('user_type');
     }
 
-    public function index()
-    {
+    public function index(){
+        if (!$this->CM->checkpermissiontype($this->module, 'index', $this->user_type))
+            redirect('error/accessdeny');
+
     	$data['thana_list']=$this->CM->getTotalALL('thana');
        
         
@@ -46,10 +50,9 @@ class Thana extends CI_Controller
         $this->load->view('thana/index',$data);    
     }
 
-    public function add()
-    {
-      if( !$this->CM->checkpermission($this->module,'add', $this->uid))
-             redirect ('error/accessdeny');
+    public function add(){
+        if (!$this->CM->checkpermissiontype($this->module, 'add', $this->user_type))
+            redirect('error/accessdeny');
       
        // $data['id'] = $this->CM->getMaxID('user'); 
      
@@ -96,8 +99,8 @@ class Thana extends CI_Controller
     // Edit Subject 
     public function edit($id)
     {
-         if( !$this->CM->checkpermission($this->module,'edit', $this->uid))
-             redirect ('error/accessdeny');
+         if (!$this->CM->checkpermissiontype($this->module, 'edit', $this->user_type))
+            redirect('error/accessdeny');
         
         $content = $this->CM->getInfo('thana', $id) ; 
         //$data['division_user']=$this->CM->getAllWhere('user', array('user_type' => '3'));

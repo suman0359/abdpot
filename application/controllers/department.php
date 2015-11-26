@@ -4,25 +4,30 @@ class Department extends MY_Controller
 {
     public $uid;
     public $module;
+    public $user_type;
 
     public function __construct() {
     parent::__construct();
 
     
-    $this->module='user';
+    $this->module='department';
     $this->uid=$this->session->userdata('uid');
+    $this->user_type = $this->session->userdata('user_type');
     }
 
     public function index()
     {
+        if (!$this->CM->checkpermissiontype($this->module, 'index', $this->user_type))
+            redirect('error/accessdeny');
+
         $data['content_list']=$this->CM->getAll('department');
         $this->load->view('department/index', $data);
     }
 
     public function add()
     {
-      if( !$this->CM->checkpermission($this->module,'add', $this->uid))
-             redirect ('error/accessdeny');
+      if (!$this->CM->checkpermissiontype($this->module, 'add', $this->user_type))
+            redirect('error/accessdeny');
        
         
         $data['name'] = "";
@@ -65,8 +70,8 @@ class Department extends MY_Controller
 
     public function edit($id)
     {
-         if( !$this->CM->checkpermission($this->module,'edit', $this->uid))
-             redirect ('error/accessdeny');
+         if (!$this->CM->checkpermissiontype($this->module, 'edit', $this->user_type))
+            redirect('error/accessdeny');
         
         $content = $this->CM->getInfo('department', $id) ; 
        
@@ -96,8 +101,7 @@ class Department extends MY_Controller
         
 }
 
-    public function getdepartmentbyteacher($teacher)
-    {
+    public function getdepartmentbyteacher($teacher){
         $department_list=$this->CM->getAllWhere('department', array('id' => $teacher));
         
 //        echo '<pre>';

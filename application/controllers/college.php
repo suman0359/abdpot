@@ -6,6 +6,7 @@ class College extends CI_Controller
 
 	public $uid;
     public $module;
+    public $user_type;
 
     public function __construct() {
     parent::__construct();
@@ -13,10 +14,13 @@ class College extends CI_Controller
     $this->load->model('Commons', 'CM') ;  
     $this->module='college';
     $this->uid=$this->session->userdata('uid');
+    $this->user_type = $this->session->userdata('user_type');
     }
 
-    public function index()
-    {
+    public function index(){
+        if (!$this->CM->checkpermissiontype($this->module, 'index', $this->user_type))
+            redirect('error/accessdeny');
+
     	$data['college_list']=$this->CM->getTotalALL('college');
         $data['district_list']=$this->CM->getTotalALL('district');
         $data['thana_list']=$this->CM->getTotalALL('thana');
@@ -50,8 +54,8 @@ class College extends CI_Controller
 
     public function add()
     {
-      if( !$this->CM->checkpermission($this->module,'add', $this->uid))
-             redirect ('error/accessdeny');
+      if (!$this->CM->checkpermissiontype($this->module, 'add', $this->user_type))
+            redirect('error/accessdeny');
       
         //$data['id'] = $this->CM->getMaxID('user'); 
         //$data['department_list']=$this->CM->getAll('department');
@@ -117,8 +121,8 @@ class College extends CI_Controller
 
     public function edit($id)
     {
-         if( !$this->CM->checkpermission($this->module,'edit', $this->uid))
-             redirect ('error/accessdeny');
+         if (!$this->CM->checkpermissiontype($this->module, 'edit', $this->user_type))
+            redirect('error/accessdeny');
         
         $content = $this->CM->getInfo('college', $id) ; 
         $data['district_list']=$this->CM->getAll('district', 'name ASC');

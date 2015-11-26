@@ -73,8 +73,8 @@ $this->load->view('common/sidebar');
                    
                   <td>     
                             <a class="btn btn-primary btn-flat" href="<?php echo base_url(); ?>maexecutive/edit/<?php echo $user['id'] ?>"><i class="fa fa-pencil-square-o" ></i> Edit </a>
-                           
-                            <a class="btn btn-danger btn-flat "  onclick="return confirm('Are you sure want to delete');" href="<?php echo base_url(); ?>user/delete/<?php echo $user['id'] ?>"><i class="fa fa-minus-circle"></i> Delete</a>
+                            <a class="btn btn-primary btn-flat" onclick="return confirm('Do you want to allow him to');" href="<?php echo base_url(); ?>user/permission/<?php echo $user['user_type'] ?>"><i class="fa fa-pencil-square-o" ></i> Permission </a>
+                            <a class="btn btn-danger btn-flat "  onclick="return confirm('Are you sure want to delete');" href="<?php echo base_url(); ?>maexecutive/delete/<?php echo $user['id'] ?>"><i class="fa fa-minus-circle"></i> Delete</a>
                          </div>
                     </td>     
                </tr>

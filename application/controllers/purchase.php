@@ -3,6 +3,7 @@
 class Purchase extends MY_Controller {
 
     public $_uid;
+    public $user_type;
 
     public function __construct() {
         parent::__construct();
@@ -10,13 +11,16 @@ class Purchase extends MY_Controller {
         $this->load->model('Purchase_model', 'PM');
         $this->load->model('Report_model', 'RM');
         $this->_uid = $this->session->userdata('uid');
-        $this->module = 'user';
+        $this->user_type = $this->session->userdata('user_type');
+        $this->module = 'purchase';
 
         if ($this->session->userdata('user_type') !== '1')
             redirect('error/accessdeny');
     }
 
     public function index() {
+        if (!$this->CM->checkpermissiontype($this->module, 'index', $this->user_type))
+            redirect('error/accessdeny');
 
 
         $data;
@@ -24,6 +28,9 @@ class Purchase extends MY_Controller {
     }
 
     public function add($rid = NULL) {
+        if (!$this->CM->checkpermissiontype($this->module, 'add', $this->user_type))
+            redirect('error/accessdeny');
+
         $data['pro_list'] = $this->CM->getAll('books');
         $data['div_list'] = $this->CM->getAll('division', 'id DESC');
         //$data['executive_list'] = $this->CM->getAllWhere('user', array('user_type' => 5), 'id DESC');
@@ -174,6 +181,8 @@ class Purchase extends MY_Controller {
     }
 
     public function printpreview($id) {
+        if (!$this->CM->checkpermissiontype($this->module, 'printpreview', $this->user_type))
+            redirect('error/accessdeny');
 
 
         if (!$this->CM->checkpermission($this->module, 'printpreview', $this->uid))

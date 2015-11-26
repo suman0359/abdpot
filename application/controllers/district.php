@@ -7,22 +7,25 @@ class District extends CI_Controller {
 
     public $uid;
     public $module;
+    public $user_type;
 
     public function __construct() {
         parent::__construct();
 
         $this->load->model('Commons', 'CM');
-        $this->module = 'user';
+        $this->module = 'district';
         $this->uid = $this->session->userdata('uid');
+        $this->user_type = $this->session->userdata('user_type');
     }
 
     public function index() {
+        if (!$this->CM->checkpermissiontype($this->module, 'index', $this->user_type))
+            redirect('error/accessdeny');
+
+
         $data['district_list'] = $this->CM->getTotalALL('district');
 
-//        echo '<pre>';
-//         print_r($data['district_list']);
-//         exit();
-        
+       
         $no_rows = $this->CM->getTotalRow('district');
         $this->load->library('pagination');
         $config['base_url'] = base_url() . 'district/index/';
@@ -50,7 +53,7 @@ class District extends CI_Controller {
     }
 
     public function add() {
-        if (!$this->CM->checkpermission($this->module, 'add', $this->uid))
+        if (!$this->CM->checkpermissiontype($this->module, 'add', $this->user_type))
             redirect('error/accessdeny');
 
         // $data['id'] = $this->CM->getMaxID('user'); 
@@ -92,7 +95,7 @@ class District extends CI_Controller {
 
     // Edit Subject 
     public function edit($id) {
-        if (!$this->CM->checkpermission($this->module, 'edit', $this->uid))
+        if (!$this->CM->checkpermissiontype($this->module, 'edit', $this->user_type))
             redirect('error/accessdeny');
 
         $content = $this->CM->getInfo('district', $id);

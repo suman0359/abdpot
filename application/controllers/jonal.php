@@ -4,17 +4,23 @@ class Jonal extends CI_Controller
 {
 	public $uid;
 	public $module;
-
+        public $user_type;
+        
 	public function __construct() {
 	parent::__construct();
 
 	$this->load->model('Commons', 'CM') ;  
-	$this->module='user';
+	$this->module='jonal';
 	$this->uid=$this->session->userdata('uid');
+        $this->user_type = $this->session->userdata('user_type');
+        
+        
     }
 
-    public function index()
-    {
+    public function index(){
+        if (!$this->CM->checkpermissiontype($this->module, 'index', $this->user_type))
+            redirect('error/accessdeny');
+        
     	$data['jonal_list']=$this->CM->getTotalALL('jonal');
 
         $no_rows= $this->CM->getTotalRow('jonal');
@@ -47,8 +53,8 @@ class Jonal extends CI_Controller
 
     public function add()
     {
-      if( !$this->CM->checkpermission($this->module,'add', $this->uid))
-             redirect ('error/accessdeny');
+      if (!$this->CM->checkpermissiontype($this->module, 'add', $this->user_type))
+            redirect('error/accessdeny');
       
         //$data['id'] = $this->CM->getMaxID('user'); 
         //$data['department_list']=$this->CM->getAll('department');
@@ -106,8 +112,8 @@ class Jonal extends CI_Controller
 
     public function edit($id)
     {
-         if( !$this->CM->checkpermission($this->module,'edit', $this->uid))
-             redirect ('error/accessdeny');
+         if (!$this->CM->checkpermissiontype($this->module, 'edit', $this->user_type))
+            redirect('error/accessdeny');
         
         $content = $this->CM->getInfo('jonal', $id) ; 
         $data['division_list']=$this->CM->getTotalALL('division');
@@ -144,8 +150,9 @@ class Jonal extends CI_Controller
     }
     
     
-    public function jonaluser($jonla_id)
-    {
+    public function jonaluser($jonla_id){
+        if (!$this->CM->checkpermissiontype($this->module, 'jonaluser', $this->user_type))
+            redirect('error/accessdeny');
        
         
                 $no_rows= count($this->CM->getAllWhere('user', array('jonal_id' => $jonla_id)));

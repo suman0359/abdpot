@@ -44,7 +44,11 @@ $this->load->view('common/sidebar');
             <label><?php 
             if($list['module']=="category") echo 'Category' ;
             else if($list['module']=="scategory") echo 'Sub Category' ;
-            else if($list['module']=="teacher") echo 'Teachers' ;
+            else if($list['module']=="teachers") echo 'Teachers' ;
+            else if($list['module']=="subject") echo 'Subject' ;
+            else if($list['module']=="books") echo 'Books' ;
+            else if($list['module']=="maexecutive") echo 'Marketing Executive' ;
+            else if($list['module']=="thana") echo 'Thana' ;
             else if($list['module']=="college") echo 'College' ;
             else if($list['module']=="transfer") echo 'Transfer' ;
             else if($list['module']=="department") echo 'Department' ;
@@ -57,6 +61,9 @@ $this->load->view('common/sidebar');
             else if($list['module']=="sale") echo 'Sale Product' ;
             else if($list['module']=="inventory") echo 'Inventory History' ;
             else if($list['module']=="report") echo 'All Report Term' ;
+            else if($list['module']=="division") echo 'Division' ;
+            else if($list['module']=="jonal") echo 'Jone / Jonal' ;
+            else if($list['module']=="district") echo 'District' ;
             
            
             
@@ -83,6 +90,14 @@ $this->load->view('common/sidebar');
              else if($value=='printpreview') echo 'Printpreview';
              else if($value=='product_info') echo 'Product Information  And Inventory History ';
              else if($value=='report_item') echo 'All Report Item';
+             else if($value=='divisioninventory') echo 'Division Inventory';
+             else if($value=='jonalinventory') echo 'Jona/ Jonal Inventory';
+             else if($value=='collegeinventory') echo 'College Inventory';
+             else if($value=='requisition') echo 'Requisition';
+             else if($value=='transfer') echo 'Transfer';
+             else if($value=='jonaltransfer') echo 'Jone/ Jonal Transfer';
+             else if($value=='distribute') echo 'Distribute';
+             else if($value=='jonaluser') echo 'Jonal User';
          
              ;?> &nbsp;&nbsp;
             
