@@ -126,6 +126,8 @@ class Jonal extends CI_Controller
         
         $data['name'] = $content->name;
         $data['division_id'] = $content->div_id;
+        $data['jonal_head_id'] = $content->jonal_head_id;
+
         //$data['status'] = $content->status;
         
         $this->load->library('form_validation');
@@ -138,7 +140,7 @@ class Jonal extends CI_Controller
         {
             $datas['name'] = $this->input->post('name'); 
             $datas['div_id'] = $this->input->post('division_id');
-            $datas['jonal_head_id'] = $this->input->post('jonal_head');      
+            $datas['jonal_head_id'] = $this->input->post('jonal_head_id');      
  
                 if($this->CM->update('jonal', $datas, $id)){
                     $msg = "Operation Successfull!!";
@@ -180,6 +182,21 @@ class Jonal extends CI_Controller
         $data['user_list']=$this->CM->getAllWhere('user', array('jonal_id' => $jonla_id),   $this->uri->segment(3), $config['per_page']);
         $data['jonal'] = $this->CM->getInfo('jonal', $jonla_id) ; 
         $this->load->view('jonal/jonaluser',$data);  
+    }
+
+    public function delete($id) {
+        if (!$this->CM->checkpermissiontype($this->module, 'delete', $this->user_type))
+            redirect('error/accessdeny');
+
+        if ($this->CM->delete_db('jonal', $id)) {
+            $msg = "Operation Successfull!!";
+            $this->session->set_flashdata('success', $msg);
+        } else {
+            $msg = "There is an error, Please try again!!";
+            $this->session->set_flashdata('error', $msg);
+        }
+
+        redirect('jonal');
     }
     
     

@@ -24,6 +24,7 @@
         <link href="<?php echo base_url(); ?>style_sheet/css/jQueryUI/jquery-ui-1.10.3.custom.min.css" rel="stylesheet" type="text/css" />
         <link href="<?php echo base_url(); ?>style_sheet/css/AdminLTE.css" rel="stylesheet" type="text/css" />
         <link href="<?php echo base_url(); ?>style_sheet/css/style.css" rel="stylesheet" type="text/css" />
+        <link href="<?php echo base_url(); ?>style_sheet/css/responsive-table.css" rel="stylesheet" type="text/css" />
         
              <!-- jQuery 2.0.2 -->
         

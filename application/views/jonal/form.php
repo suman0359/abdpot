@@ -79,12 +79,12 @@ $this->load->view('common/sidebar');
 
                     <label>Jonal Head Name </label>
                     <div>
-                        <select name="jonal_head" class="form-group form-control">
+                        <select name="jonal_head_id" class="form-group form-control">
                             <option value="0" >select Option</option>
                             <?php foreach ($jonal_head_list as $jonal_head) { ?>
 
                                 <option value="<?php echo $jonal_head["id"]; ?>" 
-                                        <?php if ($jonal_head["id"] == $jonal_head) {
+                                        <?php if ($jonal_head["id"] == $jonal_head_id) {
                                             echo 'selected';
                                         } ?> >
                                 <?php echo $jonal_head["name"]; ?>

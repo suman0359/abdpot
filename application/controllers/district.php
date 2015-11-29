@@ -59,7 +59,9 @@ class District extends CI_Controller {
         // $data['id'] = $this->CM->getMaxID('user'); 
 
         $data['subject_user'] = $this->CM->getAllWhere('user', array('user_type' => '3'));
-        $data['jonal_list'] = $this->CM->getTotalALL('jonal');
+        $data['jonal_list'] = $this->CM->getALL('jonal');
+
+
         $data['name'] = "";
         $data['jonal_id']= "";
 
@@ -100,7 +102,7 @@ class District extends CI_Controller {
 
         $content = $this->CM->getInfo('district', $id);
         //$data['division_user']=$this->CM->getAllWhere('user', array('user_type' => '3'));
-        $data['jonal_list'] = $this->CM->getTotalALL('jonal');
+        $data['jonal_list'] = $this->CM->getALL('jonal');
 
         $data['name'] = $content->name;
         //$data['status'] = $content->status;

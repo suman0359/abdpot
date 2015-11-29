@@ -33,10 +33,11 @@ $this->load->view('common/sidebar');
    </div> 
 
 
-   <div class="col-md-8 ">
+   <div class="col-md-12 ">
         
     <table class="table table-bordered table-hover ">
-        <tr>
+
+          <tr>
             <th id="action_btn_align">SL</th>
             <th id="action_btn_align">Jone/Jonal Name</th>
             <th id="action_btn_align">Jone/Jonal Head Name</th>
@@ -44,7 +45,8 @@ $this->load->view('common/sidebar');
             <th id="action_btn_align">Action</th>
            
          </tr>
-   
+
+
                      
          
          <?php 
@@ -63,13 +65,15 @@ $this->load->view('common/sidebar');
           <td>     
                 <a class="btn btn-primary btn-flat" href="<?php echo base_url(); ?>jonal/edit/<?php echo $jonal['id'] ?>">
                 <i class="fa fa-pencil-square-o" ></i> Edit </a>
+                <a class="btn btn-danger btn-flat "  onclick="return confirm('Are you sure want to delete');" href="<?php echo base_url(); ?>jonal/delete/<?php echo $jonal['id'] ?>">
+                <i class="fa fa-minus-circle"></i> Delete</a>
                 <a class="btn btn-warning btn-flat" href="<?php echo base_url(); ?>jonal/jonaluser/<?php echo $jonal['id'] ?>">
                 <i class="fa fa-user" ></i> See Jonal User  </a>
                 
           </td>     
        </tr>
       <?php } ?>
-            
+
      </table> 
 </div>
 
