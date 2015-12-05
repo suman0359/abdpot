@@ -29,7 +29,7 @@ $this->load->view('common/sidebar');
         
    </div> 
 
-<form action="<?php echo base_url()."college/search/"; ?>" method="POST" >
+<form action="<?php echo base_url()."college/search/"; ?>" method="POST">
    <div class="col-md-8">
      <div class="search_bar">
        <div class="form-group">
@@ -46,7 +46,8 @@ $this->load->view('common/sidebar');
          <input type="submit" value="Search" class="btn btn-primary">
 
          <div class="pull-right"> 
-          <a href="<?php echo base_url()?>college/add" class="btn btn-info pull-right" > <i class="fa fa-plus-square gap">  </i> Add College</a> 
+          <a href="<?php echo base_url()?>college/add" class="btn btn-info pull-right" > 
+              <i class="fa fa-plus-square gap">  </i> Add College</a> 
         </div>
         <div class="clearfix"></div>
        </div>
@@ -77,7 +78,10 @@ $this->load->view('common/sidebar');
          
          <?php 
        		//  var_dump($college_list) ; 
-         	foreach ($college_list as $college){
+//echo '<pre>';
+//print_r($college_list);
+//exit();
+         	foreach ($college_list as $key => $college){
             $district = $this->CM->getInfo('district', $college['district_id'] );
           $thana = $this->CM->getInfo('thana', $college['thana_id'] );
          ?>
@@ -85,12 +89,12 @@ $this->load->view('common/sidebar');
          
       <tr id="action_btn_align">
           <td> <?php echo $college['id'] ?></td>
-          <td> <?php echo $college['name'] ?></td>
+          <td> <?php echo $college[name]?></td>
           <td> <?php echo $district->name; ?></td>
           <td> <?php echo $thana->name; ?></td>
           <td> <?php 
           
-         $exc = get_user($college['executive_id']); 
+         $exc = get_user($college['executive_id']);
           echo $exc->name ; 
              ; 
             ?></td>
@@ -100,13 +104,13 @@ $this->load->view('common/sidebar');
                 
           </td>     
        </tr>
-      <?php } ?>
+      <?php $i++; } ?>
             
      </table> 
 </div>
 
 <div>         
-    <?php echo $this->pagination->create_links();
+    <?php //echo $this->pagination->create_links();
 
     ?>  
     </div>

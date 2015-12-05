@@ -18,6 +18,22 @@ class Commons extends CI_Model {
         return $bcl;
     }
 
+    /*
+    *   Search Query 
+    *   Search For College at this time
+    */
+
+    function search($table, $search){
+        $this->db->select("*");
+        
+        $this->db->like('name', $search, 'both');
+        
+        $this->db->from($table);
+        //$query = $this->db->get();
+        return $this->db->get()->result_array();
+        //return $query->result();
+    }
+
     //Selector Column Name || Where(Column Name) || Where Passed value || From(Table Name) 
     // $SCN = Selector Column Name
     // $WCN = Where Column Name 
@@ -98,9 +114,7 @@ class Commons extends CI_Model {
 
     public function getAll($table, $order = NULL) {
         $this->db->where('status !=', 13);
-        if (!($order == NULL)) {
-            $this->db->order_by($order);
-        }
+        
         $query = $this->db->get($table)->result_array();
         return $query;
     }

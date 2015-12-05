@@ -49,6 +49,7 @@ class College extends CI_Controller
         
         $data['college_list']=$this->CM->getTotalALL('college',$this->uri->segment(3), $config['per_page']);
         
+        
     	$this->load->view('college/index', $data);
     }
 
@@ -162,5 +163,47 @@ class College extends CI_Controller
                 }
         }
         
+    }
+
+
+    public function search(){
+        if (!$this->CM->checkpermissiontype($this->module, 'index', $this->user_type))
+            redirect('error/accessdeny');
+
+        $search = $this->input->post('search');
+
+        //$data['college_list']=$this->CM->getwhere('college', array('name' => $search), $order = NULL);
+        $data['district_list']=$this->CM->getTotalALL('district');
+        //$data['thana_list']=$this->CM->getTotalALL('thana');
+
+        $no_rows= $this->CM->getTotalRow('college');
+        $this->load->library('pagination');
+        $config['base_url'] = base_url().'college/index/';
+       
+        $config['total_rows'] = $no_rows ;
+        $config['per_page'] = 15;
+        $config['full_tag_open'] = '<div class=" text-center"><ul class=" list-inline list-unstyled " id="listpagiction">';
+        $config['full_tag_close'] = '</ul></div>';
+        $config['prev_link'] = '&lt; Prev';
+        $config['prev_tag_open'] = '<li class="link_pagination">';
+        $config['prev_tag_close'] = '</li>';
+        $config['next_link'] = 'Next &gt;';
+        $config['next_tag_open'] = '<li class="link_pagination">';
+        $config['next_tag_close'] = '</li>';
+        $config['cur_tag_open'] = '<li class="active_pagiction"><a href="#">';
+        $config['cur_tag_close'] = '</a></li>';
+        $config['num_tag_open'] = '<li class="link_pagination">';
+        $config['num_tag_close'] = '</li>';
+        $config['last_link'] = 'Last';
+        $config['first_link'] = 'First';
+        $this->pagination->initialize($config);     
+        $table = 'college';
+        $data['college_list']=$this->CM->search($table, $search);
+
+        // echo "<pre>";
+        // print_r($data['college_list']);
+        // exit();
+        
+        $this->load->view('college/search', $data);
     }
 }

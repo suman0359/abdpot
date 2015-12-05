@@ -64,6 +64,7 @@ class Teachers extends CI_Controller {
 
 
         $data['name'] = "";
+        $data['phone'] = "";
         $data['department_id'] = "";
         $data['college_id'] = "";
 
@@ -76,6 +77,7 @@ class Teachers extends CI_Controller {
         } else {
 
             $datas['name'] = $this->input->post('name');
+            $datas['phone'] = $this->input->post('phone');
             $datas['college_id'] = $this->input->post('college_id');
             $datas['dep_id'] = $this->input->post('department_id');
             $datas['address'] = $this->input->post('address');
@@ -107,6 +109,7 @@ class Teachers extends CI_Controller {
         $data['college_list'] = $this->CM->getAll('college', 'name', 'ASC');
 
         $data['name'] = $content->name;
+        $data['phone'] = $content->phone;
         $data['address'] = $content->address;
         $data['college_id'] = $content->college_id;
         $data['department_id'] = $content->dep_id;
@@ -120,6 +123,7 @@ class Teachers extends CI_Controller {
             $this->load->view('teachers/form', $data);
         } else {
             $datas['name'] = $this->input->post('name');
+            $datas['phone'] = $this->input->post('phone');
             $datas['college_id'] = $this->input->post('college_id');
             $datas['dep_id'] = $this->input->post('department_id');
             $datas['address'] = $this->input->post('address');
@@ -138,6 +142,47 @@ class Teachers extends CI_Controller {
         $teachers_list = $this->CM->getAllWhere('teachers', array('college_id' => $collage));
 
         echo json_encode($teachers_list);
+    }
+    
+    public function search(){
+        if (!$this->CM->checkpermissiontype($this->module, 'index', $this->user_type))
+            redirect('error/accessdeny');
+
+        $search = $this->input->post('search');
+
+        //$data['college_list']=$this->CM->getwhere('college', array('name' => $search), $order = NULL);
+        $data['teachers_list']=$this->CM->getTotalALL('teachers');
+        //$data['thana_list']=$this->CM->getTotalALL('thana');
+
+        $no_rows= $this->CM->getTotalRow('college');
+        $this->load->library('pagination');
+        $config['base_url'] = base_url().'college/index/';
+       
+        $config['total_rows'] = $no_rows ;
+        $config['per_page'] = 15;
+        $config['full_tag_open'] = '<div class=" text-center"><ul class=" list-inline list-unstyled " id="listpagiction">';
+        $config['full_tag_close'] = '</ul></div>';
+        $config['prev_link'] = '&lt; Prev';
+        $config['prev_tag_open'] = '<li class="link_pagination">';
+        $config['prev_tag_close'] = '</li>';
+        $config['next_link'] = 'Next &gt;';
+        $config['next_tag_open'] = '<li class="link_pagination">';
+        $config['next_tag_close'] = '</li>';
+        $config['cur_tag_open'] = '<li class="active_pagiction"><a href="#">';
+        $config['cur_tag_close'] = '</a></li>';
+        $config['num_tag_open'] = '<li class="link_pagination">';
+        $config['num_tag_close'] = '</li>';
+        $config['last_link'] = 'Last';
+        $config['first_link'] = 'First';
+        $this->pagination->initialize($config);     
+        $table = 'teachers';
+        $data['teachers_list']=$this->CM->search($table, $search);
+
+        // echo "<pre>";
+        // print_r($data['college_list']);
+        // exit();
+        
+        $this->load->view('teachers/search', $data);
     }
 
 }

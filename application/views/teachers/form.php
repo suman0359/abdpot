@@ -50,6 +50,23 @@ $this->load->view('common/sidebar');
 		</div>
 	</div>
 
+    <div class="col-md-4">
+        <div class="form-group">
+            <label> Phone No </label>
+            <?php 
+            $form_input = array(
+                'name' => 'phone',
+                'class' =>'form-control ', 
+                'value' => $phone, 
+                'required' => 'required',
+                'placeholder'=>'Phone No',
+                'size' => '50'
+            );
+            echo form_input($form_input); 
+            ?>
+        </div>
+    </div>
+
     <div class="col-md-3">
         <div class="form-group">
        

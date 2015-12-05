@@ -27,7 +27,7 @@ $this->load->view('common/sidebar');
      <div class="search_bar">
        <div class="form-group">
         
-         <input type="search" name="search" placeholder="Search By Teachers Name" class="form-control">
+           <input type="search" name="search" placeholder="Search By Teachers Name" class="form-control">
 
          
        </div>
@@ -68,6 +68,9 @@ $this->load->view('common/sidebar');
 
                 <?php
                 //var_dump($college_list) ; 
+                
+
+                
                 foreach ($teachers_list as $teachers) {
                     $department = $this->CM->getInfo('department', $teachers['dep_id']);
                     $college = $this->CM->getInfo('college', $teachers['college_id']);
@@ -100,7 +103,8 @@ $this->load->view('common/sidebar');
         </div>
 
         <div>         
-<?php echo $this->pagination->create_links();
+<?php 
+    // echo $this->pagination->create_links();
 ?>  
         </div>
 
