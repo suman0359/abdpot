@@ -25,7 +25,7 @@ $this->load->view('common/sidebar');
     <!-- Start Working area --> 
 <div class="col-md-9 main-mid-area"> 
    <?php $this->load->view('common/error_show') ?>
-    <h2> Add New District </h2>
+    <h2> Add New Thana </h2>
     
 
     <?php 
@@ -53,20 +53,28 @@ $this->load->view('common/sidebar');
     
     
 
-    <!-- <div class="col-md-4">
-        <label> Publication Status </label><br>
-        <label class="radio-inline">
-          <input type="radio" name="status" id="inlineRadio1" <?php if ($status==1) {
-              echo "checked";
-          } ?>  value="1"> Published
-        </label>
-        <label class="radio-inline">
-          <input type="radio" name="status" id="inlineRadio2" <?php if ($status==0) {
-            echo  "checked";
-          } ?>  value="0"> Unpublished
-        </label>
-    </div>
- -->
+    <div class="col-md-3">
+                <div class="form-group">
+
+
+                    <label>District Name </label>
+                    <div>
+                        <select name="district_id" class="form-group form-control">
+                            <option value="0" >select Option</option>
+                            <?php foreach ($district_list as $district) { ?>
+
+                                <option value="<?php echo $district["id"]; ?>" 
+                                        <?php if ($district["id"] == $district_id) {
+                                            echo 'selected';
+                                        } ?> >
+                                <?php echo $district["name"]; ?>
+                                </option>
+
+<?php } ?>
+                        </select>
+                    </div>
+                </div>
+            </div>
     
     <div class="col-md-2"><br>
         <div class="pull-right"> 

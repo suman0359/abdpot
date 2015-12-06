@@ -66,7 +66,8 @@ $this->load->view('common/sidebar');
                         <td>     
                             <a class="btn btn-primary btn-flat" href="<?php echo base_url(); ?>thana/edit/<?php echo $thana['id'] ?>">
                                 <i class="fa fa-pencil-square-o" ></i> Edit </a>
-
+                            <a class="btn btn-danger btn-flat "  onclick="return confirm('Are you sure want to delete');" href="<?php echo base_url(); ?>thana/delete/<?php echo $thana['id'] ?>">
+                                <i class="fa fa-pencil-square-o" ></i> Delete </a>
                         </td>     
                     </tr>
                 <?php } ?>

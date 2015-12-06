@@ -57,7 +57,7 @@ class Thana extends CI_Controller
        // $data['id'] = $this->CM->getMaxID('user'); 
      
         $data['subject_user']=$this->CM->getAllWhere('user', array('user_type' => '3'));
-        
+        $data['district_list'] = $this->CM->getALL('district');
         $data['name'] = "";
 
         //$data['status'] = "";
@@ -73,6 +73,7 @@ class Thana extends CI_Controller
         {
             
             $datas['name'] = $this->input->post('name'); 
+            $datas['district_id'] = $this->input->post('district_id'); 
             
             $datas['status'] = 1;
             //$datas['entryby']=$this->session->userdata('uid');       
@@ -103,11 +104,12 @@ class Thana extends CI_Controller
             redirect('error/accessdeny');
         
         $content = $this->CM->getInfo('thana', $id) ; 
-        //$data['division_user']=$this->CM->getAllWhere('user', array('user_type' => '3'));
+        $data['district_list'] = $this->CM->getALL('district');
        
         
         $data['name'] = $content->name;
-        //$data['status'] = $content->status;
+        $data['district_id'] = $content->district_id;
+        
         
         $this->load->library('form_validation');
         $this->form_validation->set_rules( 'name', 'required');
@@ -118,6 +120,7 @@ class Thana extends CI_Controller
         else
         {
             $datas['name'] = $this->input->post('name'); 
+            $datas['district_id'] = $this->input->post('district_id'); 
 
             //$datas['status'] = $this->input->post('status');
             //$datas['entryby']=$this->session->userdata('uid');       
@@ -128,6 +131,21 @@ class Thana extends CI_Controller
                 }
         }
         
+    }
+
+    public function delete($id) {
+        if (!$this->CM->checkpermissiontype($this->module, 'delete', $this->user_type))
+            redirect('error/accessdeny');
+
+        if ($this->CM->delete_db('thana', $id)) {
+            $msg = "Operation Successfull!!";
+            $this->session->set_flashdata('success', $msg);
+        } else {
+            $msg = "There is an error, Please try again!!";
+            $this->session->set_flashdata('error', $msg);
+        }
+
+        redirect('thana');
     }
 
 }

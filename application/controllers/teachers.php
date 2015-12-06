@@ -185,4 +185,19 @@ class Teachers extends CI_Controller {
         $this->load->view('teachers/search', $data);
     }
 
+    public function delete($id) {
+        if (!$this->CM->checkpermissiontype($this->module, 'delete', $this->user_type))
+            redirect('error/accessdeny');
+
+        if ($this->CM->delete_db('teachers', $id)) {
+            $msg = "Operation Successfull!!";
+            $this->session->set_flashdata('success', $msg);
+        } else {
+            $msg = "There is an error, Please try again!!";
+            $this->session->set_flashdata('error', $msg);
+        }
+
+        redirect('teachers');
+    }
+
 }

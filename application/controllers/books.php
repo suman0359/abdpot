@@ -141,4 +141,19 @@ class Books extends CI_Controller {
         }
     }
 
+    public function delete($id) {
+        if (!$this->CM->checkpermissiontype($this->module, 'delete', $this->user_type))
+            redirect('error/accessdeny');
+
+        if ($this->CM->delete_db('books', $id)) {
+            $msg = "Operation Successfull!!";
+            $this->session->set_flashdata('success', $msg);
+        } else {
+            $msg = "There is an error, Please try again!!";
+            $this->session->set_flashdata('error', $msg);
+        }
+
+        redirect('books');
+    }
+
 }

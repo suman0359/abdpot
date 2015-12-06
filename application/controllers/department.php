@@ -99,7 +99,22 @@ class Department extends MY_Controller
                 }
         }
         
-}
+    }
+
+    public function delete($id) {
+        if (!$this->CM->checkpermissiontype($this->module, 'delete', $this->user_type))
+            redirect('error/accessdeny');
+
+        if ($this->CM->delete_db('department', $id)) {
+            $msg = "Operation Successfull!!";
+            $this->session->set_flashdata('success', $msg);
+        } else {
+            $msg = "There is an error, Please try again!!";
+            $this->session->set_flashdata('error', $msg);
+        }
+
+        redirect('department');
+    }
 
     public function getdepartmentbyteacher($teacher){
         $department_list=$this->CM->getAllWhere('department', array('id' => $teacher));

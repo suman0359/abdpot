@@ -165,6 +165,21 @@ class College extends CI_Controller
         
     }
 
+    public function delete($id) {
+        if (!$this->CM->checkpermissiontype($this->module, 'delete', $this->user_type))
+            redirect('error/accessdeny');
+
+        if ($this->CM->delete_db('college', $id)) {
+            $msg = "Operation Successfull!!";
+            $this->session->set_flashdata('success', $msg);
+        } else {
+            $msg = "There is an error, Please try again!!";
+            $this->session->set_flashdata('error', $msg);
+        }
+
+        redirect('college');
+    }
+
 
     public function search(){
         if (!$this->CM->checkpermissiontype($this->module, 'index', $this->user_type))

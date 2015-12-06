@@ -259,6 +259,10 @@ class User extends MY_Controller {
 
     public function permissionset() {
 
+        // echo '<pre>';
+        // print_r($_POST);
+        // exit();
+
         $module = $this->input->post('module_name');
 
         $tm = count($module);

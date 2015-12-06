@@ -65,6 +65,8 @@ $this->load->view('common/sidebar');
           <td>     
                 <a class="btn btn-primary btn-flat" href="<?php echo base_url(); ?>division/edit/<?php echo $division['id'] ?>">
                 <i class="fa fa-pencil-square-o" ></i> Edit </a>
+                <a class="btn btn-danger btn-flat "  onclick="return confirm('Are you sure want to delete');" href="<?php echo base_url(); ?>division/delete/<?php echo $division['id'] ?>">
+                <i class="fa fa-pencil-square-o" ></i> Delete </a>
                 
           </td>     
        </tr>
